@@ -6,12 +6,20 @@
     <view class="subtitle">{{gradeSlogan}}</view>
   </view>
 
+  <view class="final-card glass-card">
+    <view class="final-score">{{finalScoreText}}</view>
+    <view class="final-title">{{matchResultTitle}}</view>
+    <view class="final-desc">{{matchResultDesc}}</view>
+    <view class="persona-label">隐藏称号</view>
+    <view class="persona-name">{{hiddenPersona}}</view>
+    <view class="persona-slogan">{{hiddenPersonaSlogan}}</view>
+  </view>
+
   <view class="stat-grid">
     <view class="stat-card glass-card"><view class="stat-num">{{correct}}/{{total}}</view><view class="stat-label">命中</view></view>
     <view class="stat-card glass-card"><view class="stat-num">{{accuracy}}%</view><view class="stat-label">正确率</view></view>
     <view class="stat-card glass-card"><view class="stat-num">{{score}}</view><view class="stat-label">积分</view></view>
   </view>
-
   <view class="canvas-wrap glass-card">
     <canvas type="2d" class="certificate-canvas" id="certificateCanvas"></canvas>
   </view>

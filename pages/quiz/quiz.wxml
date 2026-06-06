@@ -12,6 +12,11 @@
     </view>
   </view>
 
+  <view class="broadcast-strip">
+    <view class="broadcast-title">{{broadcastTitle}}</view>
+    <view class="broadcast-line">{{broadcastLine}}</view>
+  </view>
+
   <view class="pixel-progress">
     <view class="progress-grass" style="width: {{progress}}%;"></view>
   </view>
@@ -30,9 +35,9 @@
     </view>
   </view>
 
-  <view wx:if="{{showAnswer && !isCorrect}}" class="feedback-card pixel-card fail">
-    <view class="feedback-title">球偏了，但比赛继续</view>
-    <view class="feedback-desc">{{currentQuestion.explanation}}</view>
+  <view wx:if="{{showAnswer}}" class="feedback-card pixel-card {{isCorrect ? 'success' : 'fail'}}">
+    <view class="feedback-title">{{broadcastTitle}}</view>
+    <view class="feedback-desc">{{isCorrect ? broadcastLine : currentQuestion.explanation}}</view>
   </view>
 
   <view class="action-area" wx:if="{{showAnswer && !isCorrect}}">
