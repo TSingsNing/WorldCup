@@ -1,0 +1,23 @@
+.home-page { overflow: hidden; }
+.hero { padding-top: 20rpx; }
+.eyebrow { color: #08d9d6; font-size: 24rpx; font-weight: 800; letter-spacing: 4rpx; }
+.title { margin-top: 18rpx; font-size: 64rpx; line-height: 1.08; font-weight: 900; }
+.subtitle { margin-top: 24rpx; color: rgba(255,255,255,.72); font-size: 28rpx; line-height: 1.7; }
+.stadium-card { position: relative; margin-top: 44rpx; padding: 44rpx 34rpx; overflow: hidden; }
+.stadium-light { position: absolute; top: -48rpx; width: 180rpx; height: 180rpx; border-radius: 50%; background: rgba(246,196,83,.22); filter: blur(8rpx); }
+.stadium-light.left { left: -40rpx; }
+.stadium-light.right { right: -40rpx; background: rgba(8,217,214,.22); }
+.ball { font-size: 76rpx; line-height: 1; }
+.stadium-title { margin-top: 20rpx; font-size: 36rpx; font-weight: 850; }
+.stadium-desc { margin-top: 12rpx; color: rgba(255,255,255,.72); font-size: 26rpx; line-height: 1.6; }
+.section-title { margin: 54rpx 0 24rpx; font-size: 34rpx; font-weight: 850; }
+.difficulty-list { display: flex; flex-direction: column; gap: 24rpx; }
+.difficulty-card { padding: 34rpx; transition: transform .2s ease; }
+.difficulty-card:active { transform: scale(.985); }
+.difficulty-top, .difficulty-bottom { display: flex; align-items: center; justify-content: space-between; }
+.difficulty-name { font-size: 34rpx; font-weight: 850; }
+.question-count { padding: 8rpx 18rpx; border-radius: 999rpx; color: #061124; background: #f6c453; font-size: 24rpx; font-weight: 800; }
+.difficulty-desc { margin-top: 18rpx; color: rgba(255,255,255,.72); font-size: 26rpx; line-height: 1.6; }
+.difficulty-bottom { margin-top: 28rpx; }
+.badge { color: #08d9d6; font-size: 26rpx; font-weight: 800; }
+.arrow { color: #ffffff; font-size: 26rpx; font-weight: 750; }

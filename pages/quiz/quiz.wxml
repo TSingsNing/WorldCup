@@ -1,0 +1,40 @@
+<view class="container quiz-page">
+  <view class="quiz-header">
+    <view>
+      <view class="eyebrow">{{quiz.name}}</view>
+      <view class="title">第 {{currentIndex + 1}} / {{total}} 题</view>
+    </view>
+    <view class="score-pill">{{score}} 连对</view>
+  </view>
+
+  <view class="progress-wrap">
+    <view class="progress-bar" style="width: {{progress}}%;"></view>
+  </view>
+
+  <view class="question-card glass-card">
+    <view class="question-text">{{currentQuestion.question}}</view>
+    <view class="option-list">
+      <view
+        wx:for="{{currentQuestion.options}}"
+        wx:key="*this"
+        data-index="{{index}}"
+        bindtap="chooseOption"
+        class="option-card {{selectedIndex === index ? (isCorrect ? 'option-correct' : 'option-wrong') : ''}} {{showAnswer && index === currentQuestion.answer ? 'option-correct' : ''}}"
+      >
+        <view class="option-letter">{{letters[index]}}</view>
+        <view class="option-text">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showAnswer}}" class="feedback-card glass-card {{isCorrect ? 'success' : 'fail'}}">
+    <view class="feedback-title">{{isCorrect ? '回答正确！' : '这题失守了'}}</view>
+    <view class="feedback-desc">{{currentQuestion.explanation}}</view>
+  </view>
+
+  <view class="action-area" wx:if="{{showAnswer}}">
+    <view wx:if="{{isCorrect && !isLast}}" class="primary-button" bindtap="nextQuestion">下一题</view>
+    <view wx:if="{{isCorrect && isLast}}" class="primary-button" bindtap="goCertificate">领取证书</view>
+    <view wx:if="{{!isCorrect}}" class="ghost-button" bindtap="restart">重新挑战本难度</view>
+  </view>
+</view>

@@ -1,0 +1,49 @@
+page {
+  min-height: 100vh;
+  color: #ffffff;
+  background: #07142f;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 48rpx 32rpx 64rpx;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(8, 217, 214, 0.28), transparent 28%),
+    radial-gradient(circle at 86% 2%, rgba(246, 196, 83, 0.22), transparent 22%),
+    linear-gradient(180deg, #07142f 0%, #0b1f45 48%, #061124 100%);
+}
+
+.glass-card {
+  border: 1rpx solid rgba(255, 255, 255, 0.16);
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24rpx 80rpx rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18rpx);
+}
+
+.primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  border-radius: 999rpx;
+  color: #061124;
+  font-size: 32rpx;
+  font-weight: 800;
+  background: linear-gradient(135deg, #08d9d6 0%, #f6c453 100%);
+  box-shadow: 0 18rpx 42rpx rgba(8, 217, 214, 0.28);
+}
+
+.ghost-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.24);
+  border-radius: 999rpx;
+  color: #ffffff;
+  font-size: 30rpx;
+  background: rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,30 @@
+<view class="container home-page">
+  <view class="hero">
+    <view class="eyebrow">FIFA WORLD CUP QUIZ</view>
+    <view class="title">世界杯答题挑战</view>
+    <view class="subtitle">选择一个难度，用连续答对证明你的世界杯知识储备。全对即可领取一张专属荣誉证书。</view>
+  </view>
+
+  <view class="stadium-card glass-card">
+    <view class="stadium-light left"></view>
+    <view class="stadium-light right"></view>
+    <view class="ball">⚽</view>
+    <view class="stadium-title">今晚，你是第 12 人</view>
+    <view class="stadium-desc">每个难度题量不同，答错可立即查看解析并重新挑战。</view>
+  </view>
+
+  <view class="section-title">选择挑战难度</view>
+  <view class="difficulty-list">
+    <view class="difficulty-card glass-card" wx:for="{{difficulties}}" wx:key="key" bindtap="startQuiz" data-key="{{item.key}}">
+      <view class="difficulty-top">
+        <view class="difficulty-name">{{item.name}}</view>
+        <view class="question-count">{{item.count}} 题</view>
+      </view>
+      <view class="difficulty-desc">{{item.description}}</view>
+      <view class="difficulty-bottom">
+        <view class="badge">{{item.badge}}</view>
+        <view class="arrow">开始挑战 →</view>
+      </view>
+    </view>
+  </view>
+</view>

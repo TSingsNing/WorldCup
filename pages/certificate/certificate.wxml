@@ -1,0 +1,16 @@
+<view class="container cert-page">
+  <view class="cert-hero">
+    <view class="eyebrow">PERFECT CHALLENGE</view>
+    <view class="title">荣誉证书已解锁</view>
+    <view class="subtitle">你已在「{{difficultyName}}」难度中全部答对，获得「{{badge}}」称号。</view>
+  </view>
+
+  <view class="canvas-wrap glass-card">
+    <canvas class="certificate-canvas" canvas-id="certificateCanvas" id="certificateCanvas"></canvas>
+  </view>
+
+  <view class="button-group">
+    <view class="primary-button" bindtap="saveCertificate">保存证书图片</view>
+    <view class="ghost-button" bindtap="backHome">返回首页</view>
+  </view>
+</view>
