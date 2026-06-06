@@ -1,4 +1,4 @@
-<view class="container home-page pixel-home">
+<view class="container home-page pixel-home" bindtouchstart="onPageTouch">
   <view class="top-actions">
     <view class="pill-button" bindtap="toggleMusic">{{musicOn ? 'BGM 已开 · 球场热身中' : '播放赛前 BGM'}}</view>
     <view class="pill-button outline" bindtap="goLeaderboard">好友段位榜</view>

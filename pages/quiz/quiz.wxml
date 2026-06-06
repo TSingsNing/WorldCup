@@ -30,12 +30,12 @@
     </view>
   </view>
 
-  <view wx:if="{{showAnswer}}" class="feedback-card pixel-card {{isCorrect ? 'success' : 'fail'}}">
-    <view class="feedback-title">{{isCorrect ? '球进了，记分牌亮灯' : '球偏了，但比赛继续'}}</view>
+  <view wx:if="{{showAnswer && !isCorrect}}" class="feedback-card pixel-card fail">
+    <view class="feedback-title">球偏了，但比赛继续</view>
     <view class="feedback-desc">{{currentQuestion.explanation}}</view>
   </view>
 
-  <view class="action-area" wx:if="{{showAnswer}}">
+  <view class="action-area" wx:if="{{showAnswer && !isCorrect}}">
     <view wx:if="{{!isLast}}" class="primary-button pixel-button" bindtap="nextQuestion">下一脚继续攻门</view>
     <view wx:if="{{isLast}}" class="primary-button pixel-button" bindtap="goCertificate">生成我的球场证书</view>
   </view>

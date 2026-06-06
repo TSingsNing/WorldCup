@@ -2,11 +2,26 @@
   "description": "世界杯答题互动微信小程序",
   "packOptions": {
     "ignore": [
-      { "type": "file", "value": "README.md" },
-      { "type": "folder", "value": "docs" },
-      { "type": "glob", "value": "*.png" },
-      { "type": "glob", "value": "*.jpg" },
-      { "type": "file", "value": "project.private.config.json" }
+      {
+        "value": "README.md",
+        "type": "file"
+      },
+      {
+        "value": "docs",
+        "type": "folder"
+      },
+      {
+        "value": "*.png",
+        "type": "glob"
+      },
+      {
+        "value": "*.jpg",
+        "type": "glob"
+      },
+      {
+        "value": "project.private.config.json",
+        "type": "file"
+      }
     ],
     "include": []
   },
@@ -54,8 +69,8 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.7.0",
-  "appid": "wxac354d1cdbf01387",
+  "libVersion": "3.16.1",
+  "appid": "wxf991cdca923ac2ac",
   "projectname": "WorldCupQuiz",
   "condition": {},
   "editorSetting": {

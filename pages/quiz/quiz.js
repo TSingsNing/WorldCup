@@ -61,6 +61,19 @@ Page({
       roast: isCorrect ? '这脚推射很稳，继续压上！' : '这球弹门柱了，别停，下一脚还能追回来。'
     })
     wx.vibrateShort({ type: isCorrect ? 'light' : 'medium' })
+
+    // 答对：短暂展示绿色高亮后自动推进，不打扰节奏
+    // 答错：保留在原页面展示解释和"下一脚"按钮，让用户阅读
+    if (isCorrect) {
+      const isLast = this.data.isLast
+      setTimeout(() => {
+        if (isLast) {
+          this.goCertificate()
+        } else {
+          this.nextQuestion()
+        }
+      }, 550)
+    }
   },
 
   nextQuestion() {
