@@ -1,14 +1,15 @@
-.eyebrow { color: #08d9d6; font-size: 22rpx; font-weight: 900; letter-spacing: 4rpx; }
-.title { margin-top: 14rpx; font-size: 54rpx; font-weight: 950; }
-.subtitle { margin-top: 18rpx; color: rgba(255,255,255,.72); font-size: 27rpx; line-height: 1.7; }
+.hero { padding: 30rpx; }
+.title { margin-top: 14rpx; font-size: 52rpx; }
+.subtitle { margin-top: 18rpx; color: rgba(255,255,255,.78); font-size: 27rpx; line-height: 1.68; }
 .board-list { margin-top: 34rpx; display: flex; flex-direction: column; gap: 18rpx; }
-.rank-card { display: flex; align-items: center; gap: 20rpx; padding: 26rpx; }
-.rank-card.mine { border-color: rgba(246,196,83,.7); background: rgba(246,196,83,.14); }
-.rank-num { width: 74rpx; color: #f6c453; font-size: 30rpx; font-weight: 950; }
+.rank-card { display: flex; align-items: center; gap: 18rpx; padding: 24rpx; }
+.rank-card.mine { border-color: #FFD84D; background: rgba(255,216,77,.15); }
+.rank-num { width: 74rpx; color: #FFD84D; font-size: 30rpx; font-weight: 950; }
 .rank-main { flex: 1; min-width: 0; }
 .name-row { display: flex; align-items: center; gap: 12rpx; }
-.name { font-size: 30rpx; font-weight: 900; }
-.me-tag { padding: 4rpx 12rpx; border-radius: 999rpx; color: #061124; background: #08d9d6; font-size: 20rpx; font-weight: 900; }
-.meta { margin-top: 8rpx; color: rgba(255,255,255,.66); font-size: 23rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.score { color: #08d9d6; font-size: 32rpx; font-weight: 950; }
+.name { font-size: 29rpx; font-weight: 950; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.me-tag { padding: 4rpx 12rpx; border: 3rpx solid #E7FFD8; border-radius: 6rpx; color: #071A0F; background: #7CFF6B; font-size: 20rpx; font-weight: 950; }
+.meta { margin-top: 8rpx; color: rgba(255,255,255,.72); font-size: 23rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.submeta { margin-top: 8rpx; color: #7CFF6B; font-size: 22rpx; font-weight: 900; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.score { min-width: 84rpx; text-align: right; color: #FFD84D; font-size: 32rpx; font-weight: 950; }
 .bottom { margin-top: 34rpx; }

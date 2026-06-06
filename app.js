@@ -1,45 +1,63 @@
 App({
   globalData: {
-    appName: '世界杯整活答题局',
+    appName: '世界杯像素答题杯',
     theme: {
-      primary: '#08d9d6',
-      gold: '#f6c453',
-      deep: '#07142f'
+      primary: '#7CFF6B',
+      gold: '#FFD84D',
+      deep: '#0B2B18'
     },
     bgmAudio: null,
-    bgmPlaying: false
+    bgmPlaying: false,
+    currentBgmKey: '',
+    bgmMap: {
+      easy: '/assets/audio/bgm_easy.mp3',
+      medium: '/assets/audio/bgm_medium.mp3',
+      hard: '/assets/audio/bgm_hard.mp3',
+      nightmare: '/assets/audio/bgm_legend.mp3',
+      default: '/assets/audio/worldcup_quiz_bgm.mp3'
+    }
   },
 
-  ensureBgm() {
-    if (this.globalData.bgmAudio || typeof wx === 'undefined') {
-      return this.globalData.bgmAudio
+  getBgmSrc(difficulty) {
+    return this.globalData.bgmMap[difficulty] || this.globalData.bgmMap.default
+  },
+
+  ensureBgm(difficulty = 'default') {
+    if (typeof wx === 'undefined') return null
+    const src = this.getBgmSrc(difficulty)
+
+    if (!this.globalData.bgmAudio) {
+      const audio = wx.createInnerAudioContext()
+      audio.loop = true
+      audio.obeyMuteSwitch = false
+      audio.volume = 0.36
+      audio.onPlay(() => {
+        this.globalData.bgmPlaying = true
+      })
+      audio.onPause(() => {
+        this.globalData.bgmPlaying = false
+      })
+      audio.onStop(() => {
+        this.globalData.bgmPlaying = false
+      })
+      audio.onError((err) => {
+        this.globalData.bgmPlaying = false
+        console.warn('background music error', err)
+      })
+      this.globalData.bgmAudio = audio
     }
 
-    const audio = wx.createInnerAudioContext()
-    audio.loop = true
-    audio.obeyMuteSwitch = false
-    audio.volume = 0.38
-    audio.src = '/assets/audio/worldcup_quiz_bgm.mp3'
-    audio.onPlay(() => {
-      this.globalData.bgmPlaying = true
-    })
-    audio.onPause(() => {
-      this.globalData.bgmPlaying = false
-    })
-    audio.onStop(() => {
-      this.globalData.bgmPlaying = false
-    })
-    audio.onError((err) => {
-      this.globalData.bgmPlaying = false
-      console.warn('background music error', err)
-    })
-
-    this.globalData.bgmAudio = audio
+    const audio = this.globalData.bgmAudio
+    if (this.globalData.currentBgmKey !== difficulty || audio.src !== src) {
+      audio.stop()
+      audio.src = src
+      this.globalData.currentBgmKey = difficulty
+    }
     return audio
   },
 
-  playBgm() {
-    const audio = this.ensureBgm()
+  playBgm(difficulty = 'default') {
+    const audio = this.ensureBgm(difficulty)
     if (!audio) return false
     audio.play()
     this.globalData.bgmPlaying = true
@@ -53,8 +71,11 @@ App({
     return false
   },
 
-  toggleBgm() {
-    return this.globalData.bgmPlaying ? this.pauseBgm() : this.playBgm()
+  toggleBgm(difficulty = 'default') {
+    if (this.globalData.bgmPlaying && (this.globalData.currentBgmKey === difficulty || difficulty === 'default')) {
+      return this.pauseBgm()
+    }
+    return this.playBgm(difficulty)
   },
 
   isBgmPlaying() {

@@ -1,19 +1,26 @@
-<view class="container quiz-page">
-  <view class="quiz-header">
+<view class="container quiz-page pixel-field">
+  <view class="scoreboard pixel-panel">
     <view>
       <view class="eyebrow">{{quiz.name}}</view>
       <view class="title">第 {{currentIndex + 1}} / {{total}} 题</view>
       <view class="roast">{{roast}}</view>
     </view>
-    <view class="score-pill">{{score}} 连对</view>
+    <view class="score-box">
+      <view class="score-num">{{score}}</view>
+      <view class="score-label">进球</view>
+      <view class="miss-label">失误 {{wrongCount}}</view>
+    </view>
   </view>
 
-  <view class="progress-wrap">
-    <view class="progress-bar" style="width: {{progress}}%;"></view>
+  <view class="pixel-progress">
+    <view class="progress-grass" style="width: {{progress}}%;"></view>
   </view>
 
-  <view class="question-card glass-card">
-    <view class="tiny-label">随机抽题 · 选项已洗牌</view>
+  <view class="question-card pixel-card">
+    <view class="field-lines">
+      <view class="center-circle"></view>
+    </view>
+    <view class="tiny-label">随机抽题 · 选项已洗牌 · 答错也继续</view>
     <view class="question-text">{{currentQuestion.question}}</view>
     <view class="option-list">
       <view wx:for="{{currentQuestion.options}}" wx:key="*this" data-index="{{index}}" bindtap="chooseOption" class="option-card {{selectedIndex === index ? (isCorrect ? 'option-correct' : 'option-wrong') : ''}} {{showAnswer && index === currentQuestion.answer ? 'option-correct' : ''}}">
@@ -23,14 +30,13 @@
     </view>
   </view>
 
-  <view wx:if="{{showAnswer}}" class="feedback-card glass-card {{isCorrect ? 'success' : 'fail'}}">
-    <view class="feedback-title">{{isCorrect ? '回答正确，球王体验卡 +1' : '这球踢呲了'}}</view>
+  <view wx:if="{{showAnswer}}" class="feedback-card pixel-card {{isCorrect ? 'success' : 'fail'}}">
+    <view class="feedback-title">{{isCorrect ? '球进了，记分牌亮灯' : '球偏了，但比赛继续'}}</view>
     <view class="feedback-desc">{{currentQuestion.explanation}}</view>
   </view>
 
   <view class="action-area" wx:if="{{showAnswer}}">
-    <view wx:if="{{isCorrect && !isLast}}" class="primary-button" bindtap="nextQuestion">继续上强度</view>
-    <view wx:if="{{isCorrect && isLast}}" class="primary-button" bindtap="goCertificate">生成我的整活证书</view>
-    <view wx:if="{{!isCorrect}}" class="ghost-button" bindtap="restart">重新开一局，题也会换</view>
+    <view wx:if="{{!isLast}}" class="primary-button pixel-button" bindtap="nextQuestion">下一脚继续攻门</view>
+    <view wx:if="{{isLast}}" class="primary-button pixel-button" bindtap="goCertificate">生成我的球场证书</view>
   </view>
 </view>

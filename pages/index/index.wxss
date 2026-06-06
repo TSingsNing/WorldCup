@@ -1,26 +1,25 @@
 .home-page { overflow: hidden; }
-.top-actions { display: flex; gap: 18rpx; margin-bottom: 32rpx; }
-.pill-button { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 64rpx; padding: 0 18rpx; border-radius: 999rpx; color: #061124; background: #08d9d6; font-size: 23rpx; font-weight: 900; }
-.pill-button.outline { color: #fff; background: rgba(255,255,255,.1); border: 1rpx solid rgba(255,255,255,.22); }
-.hero { padding-top: 8rpx; }
-.eyebrow { color: #08d9d6; font-size: 22rpx; font-weight: 900; letter-spacing: 4rpx; }
-.title { margin-top: 18rpx; font-size: 62rpx; line-height: 1.08; font-weight: 950; text-shadow: 0 8rpx 0 rgba(255,90,120,.18); }
-.subtitle { margin-top: 24rpx; color: rgba(255,255,255,.74); font-size: 28rpx; line-height: 1.7; }
-.stadium-card { position: relative; margin-top: 44rpx; padding: 44rpx 34rpx; overflow: hidden; }
-.stadium-card:before { content: ''; position: absolute; right: -60rpx; top: -70rpx; width: 210rpx; height: 210rpx; border-radius: 50%; background: rgba(255,90,120,.22); }
-.ticker { display: inline-flex; padding: 10rpx 18rpx; border-radius: 999rpx; color: #061124; background: #f6c453; font-size: 22rpx; font-weight: 900; }
-.ball { margin-top: 28rpx; font-size: 72rpx; line-height: 1; }
-.stadium-title { margin-top: 20rpx; font-size: 36rpx; font-weight: 900; }
-.stadium-desc { margin-top: 12rpx; color: rgba(255,255,255,.74); font-size: 26rpx; line-height: 1.6; }
-.section-title { margin: 54rpx 0 24rpx; font-size: 34rpx; font-weight: 900; }
+.top-actions { display: flex; gap: 18rpx; margin-bottom: 34rpx; }
+.pill-button { flex: 1; border: 4rpx solid #E7FFD8; color: #071A0F; background: #7CFF6B; font-size: 23rpx; box-shadow: 6rpx 6rpx 0 rgba(0,0,0,.38); }
+.pill-button.outline { color: #FFD84D; background: rgba(11,43,24,.86); border-color: #FFD84D; }
+.pixel-hero { padding-top: 10rpx; }
+.title { margin-top: 18rpx; font-size: 60rpx; line-height: 1.08; }
+.subtitle { margin-top: 24rpx; color: rgba(255,255,255,.80); font-size: 28rpx; line-height: 1.72; }
+.stadium-card { position: relative; margin-top: 42rpx; padding: 42rpx 32rpx 36rpx; }
+.field-mark { position: absolute; right: -56rpx; top: -26rpx; width: 220rpx; height: 160rpx; border: 4rpx solid rgba(255,255,255,.24); border-radius: 50%; }
+.ticker { display: inline-flex; max-width: 560rpx; padding: 10rpx 16rpx; border: 3rpx solid #0B2B18; color: #0B2B18; background: #FFD84D; font-size: 22rpx; font-weight: 950; line-height: 1.45; }
+.pixel-ball { margin-top: 30rpx; width: 78rpx; height: 78rpx; display: flex; align-items: center; justify-content: center; border: 6rpx solid #071A0F; border-radius: 6rpx; color: #071A0F; background: #ffffff; font-size: 54rpx; line-height: 1; box-shadow: 8rpx 8rpx 0 rgba(0,0,0,.38); }
+.stadium-title { margin-top: 24rpx; font-size: 36rpx; font-weight: 950; color: #7CFF6B; }
+.stadium-desc { margin-top: 14rpx; color: rgba(255,255,255,.78); font-size: 26rpx; line-height: 1.65; }
+.section-title { margin: 56rpx 0 24rpx; font-size: 34rpx; font-weight: 950; color: #FFD84D; text-shadow: 4rpx 4rpx 0 rgba(0,0,0,.38); }
 .difficulty-list { display: flex; flex-direction: column; gap: 24rpx; }
-.difficulty-card { padding: 34rpx; transition: transform .2s ease; }
-.difficulty-card:active { transform: scale(.985) rotate(-.5deg); }
+.difficulty-card { padding: 32rpx; }
+.difficulty-card:active { transform: translate(4rpx, 4rpx); }
 .difficulty-top, .difficulty-bottom { display: flex; align-items: center; justify-content: space-between; gap: 18rpx; }
-.difficulty-name { font-size: 34rpx; font-weight: 950; }
-.difficulty-vibe { margin-top: 8rpx; color: rgba(255,255,255,.62); font-size: 23rpx; line-height: 1.45; }
-.question-count { padding: 8rpx 16rpx; border-radius: 999rpx; color: #061124; background: #f6c453; font-size: 22rpx; font-weight: 900; white-space: nowrap; }
-.difficulty-desc { margin-top: 18rpx; color: rgba(255,255,255,.74); font-size: 26rpx; line-height: 1.6; }
+.difficulty-name { font-size: 34rpx; font-weight: 950; color: #ffffff; }
+.difficulty-vibe { margin-top: 8rpx; color: rgba(255,255,255,.66); font-size: 23rpx; line-height: 1.5; }
+.question-count { padding: 8rpx 14rpx; border: 3rpx solid #0B2B18; border-radius: 6rpx; color: #071A0F; background: #FFD84D; font-size: 22rpx; font-weight: 950; white-space: nowrap; }
+.difficulty-desc { margin-top: 18rpx; color: rgba(255,255,255,.80); font-size: 26rpx; line-height: 1.62; }
 .difficulty-bottom { margin-top: 28rpx; }
-.badge { color: #08d9d6; font-size: 24rpx; font-weight: 900; }
-.arrow { color: #ffffff; font-size: 26rpx; font-weight: 850; }
+.badge { color: #7CFF6B; font-size: 24rpx; font-weight: 950; }
+.arrow { color: #FFD84D; font-size: 26rpx; font-weight: 950; }

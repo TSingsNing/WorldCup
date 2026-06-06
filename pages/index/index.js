@@ -6,23 +6,19 @@ Page({
     difficulties: [],
     musicOn: false
   },
-
   onLoad() {
     this.setData({ difficulties: getDifficultyList(), musicOn: app.isBgmPlaying() })
   },
-
   toggleMusic() {
-    const musicOn = app.toggleBgm()
+    const musicOn = app.toggleBgm('default')
     this.setData({ musicOn })
   },
-
   startQuiz(event) {
-    app.playBgm()
-    this.setData({ musicOn: true })
     const difficulty = event.currentTarget.dataset.key
+    app.playBgm(difficulty)
+    this.setData({ musicOn: true })
     wx.navigateTo({ url: `/pages/quiz/quiz?difficulty=${difficulty}` })
   },
-
   goLeaderboard() {
     wx.navigateTo({ url: '/pages/leaderboard/leaderboard' })
   }

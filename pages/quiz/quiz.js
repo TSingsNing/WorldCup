@@ -1,5 +1,5 @@
 const { getQuizSession, getArchetype } = require('../../utils/questions.js')
-const { calcScore, getLevel, saveRecord } = require('../../utils/rank.js')
+const { calcScore, getLevel, getCertificateGrade, saveRecord } = require('../../utils/rank.js')
 const app = getApp()
 
 Page({
@@ -11,6 +11,7 @@ Page({
     total: 0,
     progress: 0,
     score: 0,
+    wrongCount: 0,
     selectedIndex: -1,
     showAnswer: false,
     isCorrect: false,
@@ -21,8 +22,9 @@ Page({
   },
 
   onLoad(options) {
-    app.playBgm()
-    this.initQuiz(options.difficulty || 'easy')
+    const difficulty = options.difficulty || 'easy'
+    app.playBgm(difficulty)
+    this.initQuiz(difficulty)
   },
 
   initQuiz(difficulty) {
@@ -36,6 +38,7 @@ Page({
       total,
       progress: Math.round((1 / total) * 100),
       score: 0,
+      wrongCount: 0,
       selectedIndex: -1,
       showAnswer: false,
       isCorrect: false,
@@ -54,7 +57,8 @@ Page({
       showAnswer: true,
       isCorrect,
       score: isCorrect ? this.data.score + 1 : this.data.score,
-      roast: isCorrect ? '这脚射门有点东西，继续！' : 'VAR 提醒：这题你越位了。'
+      wrongCount: isCorrect ? this.data.wrongCount : this.data.wrongCount + 1,
+      roast: isCorrect ? '这脚推射很稳，继续压上！' : '这球弹门柱了，别停，下一脚还能追回来。'
     })
     wx.vibrateShort({ type: isCorrect ? 'light' : 'medium' })
   },
@@ -70,32 +74,37 @@ Page({
       showAnswer: false,
       isCorrect: false,
       isLast: nextIndex === this.data.total - 1,
-      roast: '下一题来了，别让朋友看扁。'
+      roast: '哨声没响，继续冲刺。'
     })
   },
 
   restart() {
+    app.playBgm(this.data.difficulty)
     this.initQuiz(this.data.difficulty)
   },
 
   goCertificate() {
-    const { difficulty, quiz, total, startTime } = this.data
+    const { difficulty, quiz, total, startTime, score } = this.data
     const duration = Math.max(1, Math.round((Date.now() - startTime) / 1000))
-    const finalScore = calcScore(difficulty, total, duration)
-    const archetype = getArchetype(finalScore + duration + total)
+    const finalScore = calcScore(difficulty, total, duration, score)
+    const archetype = getArchetype(finalScore + duration + score)
     const level = getLevel(difficulty)
+    const grade = getCertificateGrade(score, total)
+    const accuracy = Math.round((score / Math.max(1, total)) * 100)
     const record = {
       nickname: '我',
       difficulty,
       level,
       score: finalScore,
+      accuracy,
       duration,
       title: quiz.badge,
-      archetype: archetype.name
+      archetype: archetype.name,
+      certificateGrade: grade.name
     }
     saveRecord(record)
     wx.navigateTo({
-      url: `/pages/certificate/certificate?difficulty=${difficulty}&name=${encodeURIComponent(quiz.name)}&badge=${encodeURIComponent(quiz.badge)}&total=${total}&duration=${duration}&score=${finalScore}&level=${encodeURIComponent(level)}&type=${encodeURIComponent(archetype.name)}&slogan=${encodeURIComponent(archetype.slogan)}`
+      url: `/pages/certificate/certificate?difficulty=${difficulty}&name=${encodeURIComponent(quiz.name)}&badge=${encodeURIComponent(quiz.badge)}&total=${total}&correct=${score}&accuracy=${accuracy}&duration=${duration}&score=${finalScore}&level=${encodeURIComponent(level)}&type=${encodeURIComponent(archetype.name)}&slogan=${encodeURIComponent(archetype.slogan)}&grade=${encodeURIComponent(grade.name)}&gradeKey=${encodeURIComponent(grade.key)}&gradeSlogan=${encodeURIComponent(grade.slogan)}&seal=${encodeURIComponent(grade.seal)}&accent=${encodeURIComponent(grade.accent)}`
     })
   }
 })

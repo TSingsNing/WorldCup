@@ -1,16 +1,8 @@
 const { getLeaderboard } = require('../../utils/rank.js')
 
 Page({
-  data: {
-    list: []
-  },
-  onLoad() {
-    this.refreshLeaderboard()
-  },
+  data: { list: [] },
   onShow() {
-    this.refreshLeaderboard()
-  },
-  refreshLeaderboard() {
     this.setData({ list: getLeaderboard() })
   },
   backHome() {
