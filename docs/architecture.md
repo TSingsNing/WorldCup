@@ -21,7 +21,7 @@
 | --- | --- | --- |
 | 题库模块 | `utils/questions.js` | 维护四档难度、38 道题、随机抽题、选项洗牌和球格人格生成逻辑。 |
 | 排名模块 | `utils/rank.js` | 维护段位、分数计算、本地成绩存储和排行榜聚合逻辑。 |
-| 音乐模块 | `utils/music.js` | 使用 `wx.createInnerAudioContext()` 管理背景音乐播放、暂停和循环。 |
+| 音乐控制 | `app.js` | 使用全局 App 实例与 `wx.createInnerAudioContext()` 管理背景音乐播放、暂停和循环，页面不再单独 require 音乐模块。 |
 | 音频资产 | `assets/audio/worldcup_quiz_bgm.mp3` | 原创无歌词世界杯整活答题 BGM。 |
 
 ## 答题流程

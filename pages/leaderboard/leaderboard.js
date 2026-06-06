@@ -1,4 +1,4 @@
-const { getLeaderboard } = require('../../utils/rank')
+const { getLeaderboard } = require('../../utils/rank.js')
 
 Page({
   data: { list: [] },

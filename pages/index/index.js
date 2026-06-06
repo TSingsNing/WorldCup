@@ -1,5 +1,5 @@
-const { getDifficultyList } = require('../../utils/questions')
-const music = require('../../utils/music')
+const { getDifficultyList } = require('../../utils/questions.js')
+const app = getApp()
 
 Page({
   data: {
@@ -8,16 +8,16 @@ Page({
   },
 
   onLoad() {
-    this.setData({ difficulties: getDifficultyList(), musicOn: music.isPlaying() })
+    this.setData({ difficulties: getDifficultyList(), musicOn: app.isBgmPlaying() })
   },
 
   toggleMusic() {
-    const musicOn = music.toggleBgm()
+    const musicOn = app.toggleBgm()
     this.setData({ musicOn })
   },
 
   startQuiz(event) {
-    music.playBgm()
+    app.playBgm()
     this.setData({ musicOn: true })
     const difficulty = event.currentTarget.dataset.key
     wx.navigateTo({ url: `/pages/quiz/quiz?difficulty=${difficulty}` })

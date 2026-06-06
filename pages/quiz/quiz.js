@@ -1,6 +1,6 @@
-const { getQuizSession, getArchetype } = require('../../utils/questions')
-const { calcScore, getLevel, saveRecord } = require('../../utils/rank')
-const music = require('../../utils/music')
+const { getQuizSession, getArchetype } = require('../../utils/questions.js')
+const { calcScore, getLevel, saveRecord } = require('../../utils/rank.js')
+const app = getApp()
 
 Page({
   data: {
@@ -21,7 +21,7 @@ Page({
   },
 
   onLoad(options) {
-    music.playBgm()
+    app.playBgm()
     this.initQuiz(options.difficulty || 'easy')
   },
 

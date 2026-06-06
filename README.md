@@ -34,7 +34,7 @@
 | `pages/leaderboard` | 好友段位榜页面，当前为本地可运行排行榜原型。 |
 | `utils/questions.js` | 本地世界杯题库、随机抽题、选项洗牌和球格人格生成。 |
 | `utils/rank.js` | 段位、分数计算、本地成绩存储和排行榜数据聚合。 |
-| `utils/music.js` | 背景音乐播放、暂停和状态管理。 |
+| `app.js` | 全局入口，同时负责背景音乐播放、暂停、循环状态管理，避免页面级音乐模块加载兼容问题。 |
 | `docs/architecture.md` | 页面结构和交互流程设计。 |
 | `docs/registration-and-run.md` | 微信小程序注册、AppID 获取、开发者工具运行和发布说明。 |
 
