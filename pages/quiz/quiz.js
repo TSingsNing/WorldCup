@@ -1,4 +1,6 @@
-const { getQuiz } = require('../../utils/questions')
+const { getQuizSession, getArchetype } = require('../../utils/questions')
+const { calcScore, getLevel, saveRecord } = require('../../utils/rank')
+const music = require('../../utils/music')
 
 Page({
   data: {
@@ -13,16 +15,18 @@ Page({
     showAnswer: false,
     isCorrect: false,
     isLast: false,
+    startTime: 0,
+    roast: '别慌，先把球停住。',
     letters: ['A', 'B', 'C', 'D']
   },
 
   onLoad(options) {
-    const difficulty = options.difficulty || 'easy'
-    this.initQuiz(difficulty)
+    music.playBgm()
+    this.initQuiz(options.difficulty || 'easy')
   },
 
   initQuiz(difficulty) {
-    const quiz = getQuiz(difficulty)
+    const quiz = getQuizSession(difficulty)
     const total = quiz.questions.length
     this.setData({
       difficulty,
@@ -35,7 +39,9 @@ Page({
       selectedIndex: -1,
       showAnswer: false,
       isCorrect: false,
-      isLast: total === 1
+      isLast: total === 1,
+      startTime: Date.now(),
+      roast: quiz.vibe
     })
   },
 
@@ -47,7 +53,8 @@ Page({
       selectedIndex,
       showAnswer: true,
       isCorrect,
-      score: isCorrect ? this.data.score + 1 : this.data.score
+      score: isCorrect ? this.data.score + 1 : this.data.score,
+      roast: isCorrect ? '这脚射门有点东西，继续！' : 'VAR 提醒：这题你越位了。'
     })
     wx.vibrateShort({ type: isCorrect ? 'light' : 'medium' })
   },
@@ -62,7 +69,8 @@ Page({
       selectedIndex: -1,
       showAnswer: false,
       isCorrect: false,
-      isLast: nextIndex === this.data.total - 1
+      isLast: nextIndex === this.data.total - 1,
+      roast: '下一题来了，别让朋友看扁。'
     })
   },
 
@@ -71,9 +79,23 @@ Page({
   },
 
   goCertificate() {
-    const { difficulty, quiz, total } = this.data
+    const { difficulty, quiz, total, startTime } = this.data
+    const duration = Math.max(1, Math.round((Date.now() - startTime) / 1000))
+    const finalScore = calcScore(difficulty, total, duration)
+    const archetype = getArchetype(finalScore + duration + total)
+    const level = getLevel(difficulty)
+    const record = {
+      nickname: '我',
+      difficulty,
+      level,
+      score: finalScore,
+      duration,
+      title: quiz.badge,
+      archetype: archetype.name
+    }
+    saveRecord(record)
     wx.navigateTo({
-      url: `/pages/certificate/certificate?difficulty=${difficulty}&name=${encodeURIComponent(quiz.name)}&badge=${encodeURIComponent(quiz.badge)}&total=${total}`
+      url: `/pages/certificate/certificate?difficulty=${difficulty}&name=${encodeURIComponent(quiz.name)}&badge=${encodeURIComponent(quiz.badge)}&total=${total}&duration=${duration}&score=${finalScore}&level=${encodeURIComponent(level)}&type=${encodeURIComponent(archetype.name)}&slogan=${encodeURIComponent(archetype.slogan)}`
     })
   }
 })

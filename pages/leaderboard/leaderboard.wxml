@@ -1,0 +1,23 @@
+<view class="container board-page">
+  <view class="hero">
+    <view class="eyebrow">FRIEND RANKING</view>
+    <view class="title">好友段位榜</view>
+    <view class="subtitle">当前为本地可运行原型：你的通关成绩会真实写入本机缓存，好友数据先用模拟选手占位。接入云开发后即可变成真实好友榜。</view>
+  </view>
+
+  <view class="board-list">
+    <view class="rank-card glass-card {{item.isMine ? 'mine' : ''}}" wx:for="{{list}}" wx:key="rank">
+      <view class="rank-num">#{{item.rank}}</view>
+      <view class="rank-main">
+        <view class="name-row">
+          <view class="name">{{item.nickname}}</view>
+          <view wx:if="{{item.isMine}}" class="me-tag">我</view>
+        </view>
+        <view class="meta">{{item.level}} · {{item.title}} · {{item.duration}}s</view>
+      </view>
+      <view class="score">{{item.score}}</view>
+    </view>
+  </view>
+
+  <view class="primary-button bottom" bindtap="backHome">回去继续卷</view>
+</view>

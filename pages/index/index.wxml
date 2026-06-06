@@ -1,29 +1,36 @@
 <view class="container home-page">
+  <view class="top-actions">
+    <view class="pill-button" bindtap="toggleMusic">{{musicOn ? 'BGM 已开，气氛到位' : '开赛前先放 BGM'}}</view>
+    <view class="pill-button outline" bindtap="goLeaderboard">好友段位榜</view>
+  </view>
+
   <view class="hero">
-    <view class="eyebrow">FIFA WORLD CUP QUIZ</view>
-    <view class="title">世界杯答题挑战</view>
-    <view class="subtitle">选择一个难度，用连续答对证明你的世界杯知识储备。全对即可领取一张专属荣誉证书。</view>
+    <view class="eyebrow">WORLD CUP CHAOS QUIZ</view>
+    <view class="title">世界杯整活答题局</view>
+    <view class="subtitle">不是严肃考试，是朋友圈球迷含金量检测。抽题不固定，证书不撞脸，答对就把段位甩到好友脸上。</view>
   </view>
 
   <view class="stadium-card glass-card">
-    <view class="stadium-light left"></view>
-    <view class="stadium-light right"></view>
+    <view class="ticker">今日热梗：你可以不懂越位，但不能不懂装懂。</view>
     <view class="ball">⚽</view>
-    <view class="stadium-title">今晚，你是第 12 人</view>
-    <view class="stadium-desc">每个难度题量不同，答错可立即查看解析并重新挑战。</view>
+    <view class="stadium-title">SBTI 球格测试感</view>
+    <view class="stadium-desc">每局会从题池随机抽题并打乱选项，高难局专治“我看球二十年”的嘴硬朋友。</view>
   </view>
 
-  <view class="section-title">选择挑战难度</view>
+  <view class="section-title">选择你的球迷人格副本</view>
   <view class="difficulty-list">
     <view class="difficulty-card glass-card" wx:for="{{difficulties}}" wx:key="key" bindtap="startQuiz" data-key="{{item.key}}">
       <view class="difficulty-top">
-        <view class="difficulty-name">{{item.name}}</view>
-        <view class="question-count">{{item.count}} 题</view>
+        <view>
+          <view class="difficulty-name">{{item.name}}</view>
+          <view class="difficulty-vibe">{{item.vibe}}</view>
+        </view>
+        <view class="question-count">抽 {{item.count}} / {{item.poolCount}}</view>
       </view>
       <view class="difficulty-desc">{{item.description}}</view>
       <view class="difficulty-bottom">
-        <view class="badge">{{item.badge}}</view>
-        <view class="arrow">开始挑战 →</view>
+        <view class="badge">通关称号：{{item.badge}}</view>
+        <view class="arrow">开整 →</view>
       </view>
     </view>
   </view>

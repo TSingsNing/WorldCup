@@ -1,8 +1,8 @@
 <view class="container cert-page">
   <view class="cert-hero">
-    <view class="eyebrow">PERFECT CHALLENGE</view>
-    <view class="title">荣誉证书已解锁</view>
-    <view class="subtitle">你已在「{{difficultyName}}」难度中全部答对，获得「{{badge}}」称号。</view>
+    <view class="eyebrow">SHAREABLE CHAOS CERTIFICATE</view>
+    <view class="title">你的球格证书出炉</view>
+    <view class="subtitle">{{type}}，{{level}}。这张不太正经，但很适合发群里让朋友破防。</view>
   </view>
 
   <view class="canvas-wrap glass-card">
@@ -10,7 +10,8 @@
   </view>
 
   <view class="button-group">
-    <view class="primary-button" bindtap="saveCertificate">保存证书图片</view>
-    <view class="ghost-button" bindtap="backHome">返回首页</view>
+    <view class="primary-button" bindtap="saveCertificate">保存后发群炫耀</view>
+    <view class="ghost-button" bindtap="goLeaderboard">查看好友段位榜</view>
+    <view class="ghost-button" bindtap="backHome">再开一局</view>
   </view>
 </view>

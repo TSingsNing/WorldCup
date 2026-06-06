@@ -2,10 +2,11 @@
   "pages": [
     "pages/index/index",
     "pages/quiz/quiz",
-    "pages/certificate/certificate"
+    "pages/certificate/certificate",
+    "pages/leaderboard/leaderboard"
   ],
   "window": {
-    "navigationBarTitleText": "世界杯答题挑战",
+    "navigationBarTitleText": "世界杯整活答题局",
     "navigationBarBackgroundColor": "#07142f",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#07142f",
