@@ -103,8 +103,41 @@ Page({
       certificateGrade: grade.name
     }
     saveRecord(record)
-    wx.navigateTo({
-      url: `/pages/certificate/certificate?difficulty=${difficulty}&name=${encodeURIComponent(quiz.name)}&badge=${encodeURIComponent(quiz.badge)}&total=${total}&correct=${score}&accuracy=${accuracy}&duration=${duration}&score=${finalScore}&level=${encodeURIComponent(level)}&type=${encodeURIComponent(archetype.name)}&slogan=${encodeURIComponent(archetype.slogan)}&grade=${encodeURIComponent(grade.name)}&gradeKey=${encodeURIComponent(grade.key)}&gradeSlogan=${encodeURIComponent(grade.slogan)}&seal=${encodeURIComponent(grade.seal)}&accent=${encodeURIComponent(grade.accent)}`
-    })
+    // 把证书所需字段写入本地缓存，避免拼超长 URL；证书页 onLoad 直接读取
+    const payload = {
+      difficulty,
+      difficultyName: quiz.name,
+      badge: quiz.badge,
+      total,
+      correct: score,
+      accuracy,
+      duration,
+      score: finalScore,
+      level,
+      type: archetype.name,
+      slogan: archetype.slogan,
+      grade: grade.name,
+      gradeKey: grade.key,
+      gradeSlogan: grade.slogan,
+      seal: grade.seal,
+      accent: grade.accent
+    }
+    wx.setStorageSync('cert_payload', payload)
+    // 用 redirectTo 替代 navigateTo，避免返回栈一直累积
+    wx.redirectTo({ url: '/pages/certificate/certificate' })
+  },
+
+  onShareAppMessage() {
+    return {
+      title: `我在【${this.data.quiz.name || '世界杯像素答题杯'}】挑战中，敢来比比段位吗？`,
+      path: '/pages/index/index'
+    }
+  },
+
+  onShareTimeline() {
+    return {
+      title: '世界杯像素答题杯 · 来一局看看你的球格人格',
+      query: ''
+    }
   }
 })

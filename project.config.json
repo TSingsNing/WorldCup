@@ -1,7 +1,14 @@
 {
   "description": "世界杯答题互动微信小程序",
   "packOptions": {
-    "ignore": []
+    "ignore": [
+      { "type": "file", "value": "README.md" },
+      { "type": "folder", "value": "docs" },
+      { "type": "glob", "value": "*.png" },
+      { "type": "glob", "value": "*.jpg" },
+      { "type": "file", "value": "project.private.config.json" }
+    ],
+    "include": []
   },
   "setting": {
     "urlCheck": false,
@@ -39,15 +46,21 @@
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "libVersion": "3.7.0",
-  "appid": "touristappid",
+  "appid": "wxac354d1cdbf01387",
   "projectname": "WorldCupQuiz",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "simulatorPluginLibVersion": {}
 }

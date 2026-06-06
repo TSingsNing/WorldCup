@@ -13,7 +13,7 @@
   </view>
 
   <view class="canvas-wrap glass-card">
-    <canvas class="certificate-canvas" canvas-id="certificateCanvas" id="certificateCanvas"></canvas>
+    <canvas type="2d" class="certificate-canvas" id="certificateCanvas"></canvas>
   </view>
   <view class="button-group">
     <view class="primary-button" bindtap="saveCertificate">保存证书</view>

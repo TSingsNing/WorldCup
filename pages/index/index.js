@@ -21,5 +21,19 @@ Page({
   },
   goLeaderboard() {
     wx.navigateTo({ url: '/pages/leaderboard/leaderboard' })
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '世界杯像素答题杯 · 来一局看看你的球格人格',
+      path: '/pages/index/index'
+    }
+  },
+
+  onShareTimeline() {
+    return {
+      title: '世界杯像素答题杯 · 来一局看看你的球格人格',
+      query: ''
+    }
   }
 })

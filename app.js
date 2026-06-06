@@ -10,11 +10,11 @@ App({
     bgmPlaying: false,
     currentBgmKey: '',
     bgmMap: {
-      easy: '/assets/audio/bgm_easy.mp3',
-      medium: '/assets/audio/bgm_medium.mp3',
-      hard: '/assets/audio/bgm_hard.mp3',
-      nightmare: '/assets/audio/bgm_legend.mp3',
-      default: '/assets/audio/worldcup_quiz_bgm.mp3'
+      easy: '/assets/audio/bgm_easy.m4a',
+      medium: '/assets/audio/bgm_medium.m4a',
+      hard: '/assets/audio/bgm_hard.m4a',
+      nightmare: '/assets/audio/bgm_legend.m4a',
+      default: '/assets/audio/worldcup_quiz_bgm.m4a'
     }
   },
 

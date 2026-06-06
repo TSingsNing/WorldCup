@@ -1,3 +1,5 @@
+// TODO: 后续接入运营后台 / 云开发后，将下方 questionBank 替换为远程题库拉取（按版本号缓存）。
+//       当前为本地 hardcode 版，便于无后端跑通 MVP 体验。
 const questionBank = {
   easy: {
     name: '球迷入门局',

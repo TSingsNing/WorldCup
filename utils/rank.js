@@ -7,6 +7,8 @@ const difficultyRank = {
   nightmare: { level: '王者球史怪', coefficient: 5, order: 4 }
 }
 
+// TODO: 接入云开发 / 自有后端后，把 mockFriends 与 getLeaderboard 替换为云数据库查询。
+//       当前为本地可运行原型：本机成绩从缓存读，"好友"数据先用占位选手。
 const mockFriends = [
   { nickname: '加时赛显眼包', difficulty: 'nightmare', level: '王者球史怪', score: 781, accuracy: 100, duration: 96, title: '冷门百科人柱力', certificateGrade: '满血封神版', isMine: false },
   { nickname: '越位线发明家', difficulty: 'hard', level: '钻石考古家', score: 526, accuracy: 86, duration: 88, title: 'VAR 预言家', certificateGrade: '带伤晋级版', isMine: false },

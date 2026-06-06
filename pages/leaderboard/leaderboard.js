@@ -7,5 +7,17 @@ Page({
   },
   backHome() {
     wx.reLaunch({ url: '/pages/index/index' })
+  },
+  onShareAppMessage() {
+    return {
+      title: '看看我在世界杯像素答题杯的段位榜排名',
+      path: '/pages/index/index'
+    }
+  },
+  onShareTimeline() {
+    return {
+      title: '世界杯像素答题杯 · 好友段位榜',
+      query: ''
+    }
   }
 })
