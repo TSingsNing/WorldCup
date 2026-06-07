@@ -1,7 +1,7 @@
 <view class="container cert-page pixel-field">
   <view class="cert-hero pixel-panel">
     <view class="eyebrow">SHAREABLE PIXEL CERTIFICATE</view>
-    <view class="title">你的球场证书出炉</view>
+    <view class="title">你的 WCTI 人格出炉</view>
     <view class="grade-chip" style="border-color: {{accent}}; color: {{accent}};">{{grade}} · {{seal}}</view>
     <view class="subtitle">{{gradeSlogan}}</view>
   </view>

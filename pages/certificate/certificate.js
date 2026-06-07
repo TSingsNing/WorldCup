@@ -135,11 +135,11 @@ Page({
 
     ctx.fillStyle = accent
     ctx.font = `bold ${F(12)}px sans-serif`
-    ctx.fillText('PIXEL WORLD CUP QUIZ', X(DESIGN_W / 2), Y(74))
+    ctx.fillText('WORLD CUP TYPE INDICATOR', X(DESIGN_W / 2), Y(74))
 
     ctx.fillStyle = '#FFFFFF'
     ctx.font = `bold ${F(24)}px sans-serif`
-    ctx.fillText('球场人格证书', X(DESIGN_W / 2), Y(112))
+    ctx.fillText('WCTI 球场人格证书', X(DESIGN_W / 2), Y(112))
 
     ctx.font = `bold ${F(18)}px sans-serif`
     ctx.fillText(this.data.grade, X(DESIGN_W / 2), Y(148))
@@ -279,7 +279,7 @@ Page({
 
   onShareTimeline() {
     return {
-      title: `世界杯像素答题杯 · ${this.data.hiddenPersona}`,
+      title: `WCTI · ${this.data.hiddenPersona}`,
       query: ''
     }
   }

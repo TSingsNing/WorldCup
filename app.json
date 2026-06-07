@@ -6,7 +6,7 @@
     "pages/leaderboard/leaderboard"
   ],
   "window": {
-    "navigationBarTitleText": "世界杯像素答题杯",
+    "navigationBarTitleText": "WCTI世界杯人格测试",
     "navigationBarBackgroundColor": "#07142f",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#07142f",

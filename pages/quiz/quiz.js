@@ -150,7 +150,7 @@ Page({
       selectedAnswerText: '',
       correctAnswerText: currentQuestion ? currentQuestion.options[currentQuestion.answer] : '',
       roast: '哨声没响，继续冲刺。',
-      broadcastTitle: `${Math.min(90, Math.round(((nextIndex + 1) / this.data.total) * 90))}' 继续开球`,
+      broadcastTitle: `${Math.min(90, Math.round(((nextIndex + 1) / this.data.total) * 90))}' 继续测球格`,
       broadcastLine: '镜头回到中圈，下一题已经摆好。'
     })
   },
@@ -240,14 +240,14 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: `我在【${this.data.quiz.name || '世界杯像素答题杯'}】挑战中，敢来比比段位吗？`,
+      title: `我测出了【${this.data.quiz.name || 'WCTI世界杯人格'}】人格，敢来比比球格吗？`,
       path: '/pages/index/index'
     }
   },
 
   onShareTimeline() {
     return {
-      title: '世界杯像素答题杯 · 来一局看看你的球格人格',
+      title: 'WCTI · 测测你的世界杯人格',
       query: ''
     }
   }

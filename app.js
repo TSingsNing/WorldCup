@@ -1,6 +1,6 @@
 App({
   globalData: {
-    appName: '世界杯像素答题杯',
+    appName: 'WCTI世界杯人格测试',
     theme: {
       primary: '#7CFF6B',
       gold: '#FFD84D',

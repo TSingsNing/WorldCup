@@ -11,7 +11,7 @@ const difficultyRank = {
 //       当前为本地可运行原型：本机成绩从缓存读，"好友"数据先用占位选手。
 const mockFriends = [
   { nickname: '加时赛显眼包', difficulty: 'nightmare', level: '王者球史怪', score: 781, accuracy: 100, duration: 96, title: '冷门百科人柱力', hiddenPersona: 'FIFA 档案馆管理员', finalScoreText: '终场 10:0', certificateGrade: '满血封神版', isMine: false },
-  { nickname: '越位线发明家', difficulty: 'hard', level: '钻石考古家', score: 526, accuracy: 86, duration: 88, title: 'VAR 预言家', hiddenPersona: '高速反击答题机', finalScoreText: '终场 6:1', certificateGrade: '带伤晋级版', isMine: false },
+  { nickname: '越位线发明家', difficulty: 'hard', level: '钻石考古家', score: 526, accuracy: 86, duration: 88, title: 'VAR 预言家', hiddenPersona: '高速反击人格射手', finalScoreText: '终场 6:1', certificateGrade: '带伤晋级版', isMine: false },
   { nickname: '点球不敢看', difficulty: 'medium', level: '黄金战术板', score: 311, accuracy: 67, duration: 64, title: '战术板涂鸦师', hiddenPersona: '逆风守门员', finalScoreText: '终场 4:2', certificateGrade: '残血守门版', isMine: false },
   { nickname: '凌晨三点闹钟', difficulty: 'easy', level: '青铜看球员', score: 168, accuracy: 60, duration: 41, title: '气氛组队长', hiddenPersona: '补时绝杀型球迷', finalScoreText: '终场 3:2', certificateGrade: '快乐参赛版', isMine: false }
 ]
@@ -140,7 +140,7 @@ function getHiddenPersona({ difficulty, correctCount, total, duration, lastCorre
     return { name: '帽子戏法发动机', slogan: '一旦脚感来了，题目就像排队等你射门。' }
   }
   if (secondsPerQuestion <= 5 && accuracy >= 0.75) {
-    return { name: '高速反击答题机', slogan: '脑子还没热身，答案已经冲到禁区了。' }
+    return { name: '高速反击人格射手', slogan: '脑子还没热身，答案已经冲到禁区了。' }
   }
   if (maxWrongStreak >= 3 && accuracy >= 0.45) {
     return { name: '逆风守门员', slogan: '场面很乱，但你总能在门线上捞回几球。' }

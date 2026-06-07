@@ -6,9 +6,9 @@
 
   <view class="hero pixel-hero">
     <view class="hero-copy">
-      <view class="eyebrow">PIXEL WORLD CUP QUIZ</view>
-      <view class="title">世界杯像素答题杯</view>
-      <view class="subtitle">选难度，开球。终场发证。</view>
+      <view class="eyebrow">WORLD CUP TYPE INDICATOR</view>
+      <view class="title">WCTI世界杯人格测试</view>
+      <view class="subtitle">测球格，开球。终场发证。</view>
     </view>
     <view class="hero-pitch" aria-hidden="true">
       <view class="stand-row"><text></text><text></text><text></text><text></text></view>
