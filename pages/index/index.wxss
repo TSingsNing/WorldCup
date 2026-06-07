@@ -1,19 +1,35 @@
-.home-page { overflow: hidden; padding-top: 32rpx; }
-.top-actions { display: flex; gap: 16rpx; margin-bottom: 26rpx; }
-.pill-button { flex: 1; min-height: 72rpx; border: 4rpx solid #E7FFD8; color: #071A0F; background: #7CFF6B; font-size: 23rpx; box-shadow: 6rpx 6rpx 0 rgba(0,0,0,.38); }
+.home-page { height: 100vh; min-height: 100vh; overflow: hidden; padding: 24rpx 26rpx 26rpx; display: flex; flex-direction: column; }
+.top-actions { flex-shrink: 0; display: flex; gap: 16rpx; margin-bottom: 18rpx; }
+.pill-button { flex: 1; min-height: 66rpx; border: 4rpx solid #E7FFD8; color: #071A0F; background: #7CFF6B; font-size: 23rpx; box-shadow: 6rpx 6rpx 0 rgba(0,0,0,.38); }
 .pill-button.outline { color: #FFD84D; background: rgba(11,43,24,.86); border-color: #FFD84D; }
-.pixel-hero { padding: 24rpx 26rpx; }
-.title { margin-top: 12rpx; font-size: 56rpx; line-height: 1.06; }
-.subtitle { margin-top: 16rpx; color: rgba(255,255,255,.82); font-size: 27rpx; line-height: 1.45; }
-.section-title { margin: 34rpx 0 18rpx; font-size: 32rpx; font-weight: 950; color: #FFD84D; text-shadow: 4rpx 4rpx 0 rgba(0,0,0,.38); }
-.difficulty-list { display: flex; flex-direction: column; gap: 18rpx; }
-.difficulty-card { padding: 24rpx 26rpx; }
+.pixel-hero { flex-shrink: 0; display: flex; align-items: stretch; justify-content: space-between; gap: 18rpx; padding: 24rpx; min-height: 198rpx; }
+.hero-copy { flex: 1; min-width: 0; }
+.title { margin-top: 10rpx; font-size: 50rpx; line-height: 1.05; text-shadow: 5rpx 5rpx 0 rgba(0,0,0,.34); }
+.subtitle { margin-top: 14rpx; color: rgba(255,255,255,.82); font-size: 25rpx; line-height: 1.36; }
+.hero-pitch { position: relative; width: 188rpx; flex-shrink: 0; border: 4rpx solid rgba(255,255,255,.72); border-radius: 10rpx; background: repeating-linear-gradient(90deg, #124B28 0 28rpx, #0E3F22 28rpx 56rpx); box-shadow: inset 0 0 0 4rpx rgba(255,255,255,.10), 6rpx 6rpx 0 rgba(0,0,0,.30); overflow: hidden; }
+.hero-pitch::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 3rpx; background: rgba(255,255,255,.55); }
+.hero-pitch::after { content: ''; position: absolute; left: 50%; top: 50%; width: 66rpx; height: 66rpx; margin: -33rpx 0 0 -33rpx; border: 3rpx solid rgba(255,255,255,.55); border-radius: 50%; }
+.stand-row { position: absolute; left: 10rpx; right: 10rpx; top: 10rpx; display: flex; justify-content: space-between; z-index: 2; }
+.stand-row text { width: 24rpx; height: 18rpx; background: #FFD84D; box-shadow: 0 20rpx 0 #FF7A59, 0 40rpx 0 #7CFF6B; }
+.pixel-cup { position: absolute; right: 20rpx; bottom: 20rpx; width: 56rpx; height: 72rpx; z-index: 3; }
+.cup-head { height: 22rpx; border: 4rpx solid #FFD84D; border-bottom: 0; border-radius: 6rpx 6rpx 0 0; background: rgba(255,216,77,.22); }
+.cup-body { margin: 0 auto; width: 30rpx; height: 30rpx; background: #FFD84D; box-shadow: inset -5rpx -5rpx 0 rgba(0,0,0,.18); }
+.cup-base { margin: 5rpx auto 0; width: 48rpx; height: 12rpx; background: #E7FFD8; }
+.pixel-ball { position: absolute; left: 24rpx; bottom: 26rpx; width: 26rpx; height: 26rpx; border: 4rpx solid #071A0F; border-radius: 50%; background: #ffffff; z-index: 3; box-shadow: 4rpx 4rpx 0 rgba(0,0,0,.28); }
+.match-kit { flex-shrink: 0; display: flex; gap: 12rpx; margin: 18rpx 0 16rpx; }
+.kit-card { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10rpx; min-height: 66rpx; border: 4rpx solid rgba(255,255,255,.32); border-radius: 10rpx; background: rgba(5,25,14,.82); box-shadow: 5rpx 5rpx 0 rgba(0,0,0,.25); }
+.kit-card.hot { border-color: #FFD84D; background: rgba(255,216,77,.12); }
+.kit-icon { padding: 4rpx 8rpx; color: #071A0F; background: #FFD84D; border-radius: 5rpx; font-size: 18rpx; font-weight: 950; }
+.kit-text { color: #ffffff; font-size: 22rpx; font-weight: 950; }
+.section-title { flex-shrink: 0; margin: 2rpx 0 14rpx; font-size: 30rpx; font-weight: 950; color: #FFD84D; text-shadow: 4rpx 4rpx 0 rgba(0,0,0,.38); }
+.difficulty-list { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14rpx; }
+.difficulty-card { flex: 1; min-height: 0; padding: 18rpx 22rpx; display: flex; flex-direction: column; justify-content: center; }
 .difficulty-card:active { transform: translate(4rpx, 4rpx); }
-.difficulty-top, .difficulty-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; }
+.difficulty-top, .difficulty-bottom { display: flex; align-items: center; justify-content: space-between; gap: 14rpx; }
 .difficulty-main { min-width: 0; flex: 1; }
-.difficulty-name { font-size: 32rpx; font-weight: 950; color: #ffffff; }
-.difficulty-vibe { margin-top: 6rpx; color: rgba(255,255,255,.68); font-size: 22rpx; line-height: 1.35; }
-.question-count { padding: 7rpx 12rpx; border: 3rpx solid #0B2B18; border-radius: 6rpx; color: #071A0F; background: #FFD84D; font-size: 21rpx; font-weight: 950; white-space: nowrap; }
-.difficulty-bottom { margin-top: 18rpx; }
-.badge { color: #7CFF6B; font-size: 23rpx; font-weight: 950; }
-.arrow { color: #FFD84D; font-size: 25rpx; font-weight: 950; }
+.difficulty-name { font-size: 29rpx; font-weight: 950; color: #ffffff; }
+.difficulty-vibe { margin-top: 5rpx; color: rgba(255,255,255,.68); font-size: 20rpx; line-height: 1.26; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.question-count { padding: 6rpx 10rpx; border: 3rpx solid #0B2B18; border-radius: 6rpx; color: #071A0F; background: #FFD84D; font-size: 20rpx; font-weight: 950; white-space: nowrap; }
+.difficulty-bottom { margin-top: 12rpx; }
+.badge { color: #7CFF6B; font-size: 21rpx; font-weight: 950; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.arrow { color: #FFD84D; font-size: 23rpx; font-weight: 950; white-space: nowrap; }

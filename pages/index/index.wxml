@@ -5,9 +5,22 @@
   </view>
 
   <view class="hero pixel-hero">
-    <view class="eyebrow">PIXEL WORLD CUP QUIZ</view>
-    <view class="title">世界杯像素答题杯</view>
-    <view class="subtitle">选难度，开球。答错继续，终场发证。</view>
+    <view class="hero-copy">
+      <view class="eyebrow">PIXEL WORLD CUP QUIZ</view>
+      <view class="title">世界杯像素答题杯</view>
+      <view class="subtitle">选难度，开球。终场发证。</view>
+    </view>
+    <view class="hero-pitch" aria-hidden="true">
+      <view class="stand-row"><text></text><text></text><text></text><text></text></view>
+      <view class="pixel-cup"><view class="cup-head"></view><view class="cup-body"></view><view class="cup-base"></view></view>
+      <view class="pixel-ball"></view>
+    </view>
+  </view>
+
+  <view class="match-kit">
+    <view class="kit-card"><view class="kit-icon">90'</view><view class="kit-text">开球</view></view>
+    <view class="kit-card hot"><view class="kit-icon">TOP</view><view class="kit-text">冲榜</view></view>
+    <view class="kit-card"><view class="kit-icon">CUP</view><view class="kit-text">发证</view></view>
   </view>
 
   <view class="section-title">选择难度</view>

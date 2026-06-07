@@ -28,10 +28,17 @@
       </view>
     </view>
 
-    <view wx:if="{{showAnswer}}" class="feedback-card {{isCorrect ? 'success' : 'fail'}}">
-      <view class="feedback-title">{{isCorrect ? '命中！' : '答案解析'}}</view>
-      <view class="feedback-desc">{{isCorrect ? broadcastLine : currentQuestion.explanation}}</view>
-      <view wx:if="{{!isCorrect}}" class="feedback-action">
+    <view class="result-card {{showAnswer ? (isCorrect ? 'success' : 'fail') : 'idle'}}">
+      <view class="result-head">
+        <view class="result-tag">{{showAnswer ? '回答结果' : '场边待命'}}</view>
+        <view class="result-status">{{showAnswer ? (isCorrect ? '射门得分' : '偏出球门') : '选择一个答案'}}</view>
+      </view>
+      <view wx:if="{{showAnswer}}" class="answer-row">
+        <view class="answer-pill mine">你选 {{selectedLetter}}</view>
+        <view class="answer-pill truth">正解 {{correctLetter}}</view>
+      </view>
+      <view class="result-desc">{{showAnswer ? (isCorrect ? broadcastLine : currentQuestion.explanation) : '结果、解析和下一题入口都会出现在这里。'}}</view>
+      <view wx:if="{{showAnswer && !isCorrect}}" class="feedback-action">
         <view wx:if="{{!isLast}}" class="primary-button pixel-button compact-button" bindtap="nextQuestion">下一题</view>
         <view wx:if="{{isLast}}" class="primary-button pixel-button compact-button" bindtap="goCertificate">生成证书</view>
       </view>
