@@ -1,23 +1,44 @@
-<view class="container board-page pixel-field">
-  <view class="hero pixel-panel">
-    <view class="eyebrow">FRIEND PIXEL RANKING</view>
-    <view class="title">好友段位榜</view>
-    <view class="subtitle">当前为本地可运行原型：你的成绩会写入本机缓存，好友数据先用模拟选手占位。接入云开发后即可变成真实好友榜。</view>
+<view class="container leaderboard-page">
+  <view class="hero glass-card">
+    <view class="eyebrow">GROUP PK</view>
+    <view class="page-title">好友天台杯</view>
+    <view class="page-subtitle">好友之间只比预测眼光、连红和荣誉称号；积分不可充值、不可提现、不可转让。</view>
   </view>
 
-  <view class="board-list">
-    <view class="rank-card glass-card {{item.isMine ? 'mine' : ''}}" wx:for="{{list}}" wx:key="rank">
-      <view class="rank-num">#{{item.rank}}</view>
-      <view class="rank-main">
-        <view class="name-row">
-          <view class="name">{{item.nickname}}</view>
-          <view wx:if="{{item.isMine}}" class="me-tag">我</view>
-        </view>
-        <view class="meta">{{item.level}} · {{item.title}}</view>
-        <view class="submeta">{{item.finalScoreText || item.certificateGrade}} · {{item.hiddenPersona || item.certificateGrade}} · 正确率 {{item.accuracy}}%</view>
-      </view>
-      <view class="score">{{item.score}}</view>
+  <view class="room-card pixel-panel">
+    <view class="section-title compact">当前房间：{{room.name}}</view>
+    <view class="room-line">{{room.slogan}}</view>
+    <view class="room-line">模拟成员 {{room.members}} 人 · 我的预测 {{stats.count}} 场 · 热力积分 {{stats.totalPoints}}</view>
+    <view class="room-options">
+      <view class="room-chip {{room.name === item ? 'active' : ''}}" wx:for="{{roomOptions}}" wx:key="*this" data-name="{{item}}" bindtap="switchRoom">{{item}}</view>
     </view>
   </view>
-  <view class="primary-button bottom" bindtap="backHome">回到球场</view>
+
+  <view class="leader-list">
+    <view class="leader-item {{item.isMine ? 'mine' : ''}}" wx:for="{{list}}" wx:key="nickname">
+      <view class="rank rank-{{item.rank}}">{{item.rank}}</view>
+      <view class="leader-main">
+        <view class="leader-name">{{item.nickname}} <text wx:if="{{item.isMine}}">（我）</text></view>
+        <view class="leader-meta">{{item.title}} · {{item.badge}} · {{item.room}}</view>
+      </view>
+      <view class="leader-score">
+        <text>{{item.points}}</text>
+        <text>{{item.accuracy}}%</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="rules-card glass-card">
+    <view class="section-title compact">积分规则原型</view>
+    <view class="rule-line">完成赛果、比分、进球区间、首球时间预测可获得热力积分。</view>
+    <view class="rule-line">爆冷预测、热点赛程和清晰站队理由会获得额外娱乐加成。</view>
+    <view class="rule-line">后续接入云开发后，可按真实赛果由运营后台结算命中积分。</view>
+  </view>
+
+  <view class="bottom-actions">
+    <button class="primary-button" bindtap="goPredict">去预测</button>
+    <button class="ghost-button" bindtap="goCard">身份卡</button>
+  </view>
+
+  <view class="notice-card">{{notice}}</view>
 </view>

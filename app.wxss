@@ -1,7 +1,7 @@
 page {
   min-height: 100vh;
   color: #ffffff;
-  background: #0B2B18;
+  background: #07142f;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -12,16 +12,18 @@ page {
   background:
     linear-gradient(90deg, rgba(255,255,255,0.035) 0 2rpx, transparent 2rpx 42rpx),
     linear-gradient(0deg, rgba(255,255,255,0.035) 0 2rpx, transparent 2rpx 42rpx),
-    repeating-linear-gradient(90deg, #0B2B18 0 72rpx, #123D22 72rpx 144rpx);
+    radial-gradient(circle at 20% 0%, rgba(8,217,214,.18), transparent 32%),
+    radial-gradient(circle at 84% 12%, rgba(246,196,83,.16), transparent 30%),
+    linear-gradient(145deg, #07142f 0%, #0d244f 52%, #07142f 100%);
 }
 
 .glass-card,
 .pixel-panel,
 .pixel-card {
   position: relative;
-  border: 4rpx solid rgba(124, 255, 107, 0.72);
-  border-radius: 14rpx;
-  background: rgba(5, 25, 14, 0.88);
+  border: 2rpx solid rgba(8, 217, 214, 0.28);
+  border-radius: 24rpx;
+  background: rgba(8, 20, 47, 0.82);
   box-shadow: 8rpx 8rpx 0 rgba(0, 0, 0, 0.36), inset 0 0 0 2rpx rgba(255,255,255,0.08);
   overflow: hidden;
 }
@@ -47,16 +49,16 @@ page {
   justify-content: center;
   min-height: 88rpx;
   padding: 0 24rpx;
-  border-radius: 10rpx;
+  border-radius: 999rpx;
   font-weight: 950;
   letter-spacing: 1rpx;
 }
 
 .primary-button {
-  border: 4rpx solid #E7FFD8;
-  color: #071A0F;
+  border: 2rpx solid rgba(255,255,255,.55);
+  color: #07142f;
   font-size: 30rpx;
-  background: #7CFF6B;
+  background: linear-gradient(135deg, #08d9d6, #f6c453);
   box-shadow: 8rpx 8rpx 0 rgba(0,0,0,.42), inset -6rpx -6rpx 0 rgba(0,0,0,.12);
 }
 
@@ -68,10 +70,10 @@ page {
 }
 
 .ghost-button {
-  border: 4rpx solid rgba(255, 216, 77, 0.78);
-  color: #FFD84D;
+  border: 2rpx solid rgba(246, 196, 83, 0.62);
+  color: #f6c453;
   font-size: 28rpx;
-  background: rgba(11, 43, 24, 0.76);
+  background: rgba(7, 20, 47, 0.72);
   box-shadow: 8rpx 8rpx 0 rgba(0,0,0,.30);
 }
 
@@ -87,7 +89,7 @@ page {
 }
 
 .eyebrow {
-  color: #7CFF6B;
+  color: #08d9d6;
   font-size: 22rpx;
   font-weight: 950;
   letter-spacing: 4rpx;

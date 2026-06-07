@@ -1,20 +1,27 @@
-.cert-hero { padding: 30rpx; }
-.title { margin-top: 12rpx; font-size: 48rpx; line-height: 1.16; }
-.grade-chip { display: inline-flex; margin-top: 22rpx; padding: 10rpx 16rpx; border: 4rpx solid #FFD84D; border-radius: 8rpx; background: rgba(0,0,0,.26); font-size: 24rpx; font-weight: 950; }
-.subtitle { margin-top: 18rpx; color: rgba(255,255,255,.80); font-size: 27rpx; line-height: 1.68; }
-
-.final-card { margin-top: 26rpx; padding: 26rpx; }
-.final-score { color: #FFD84D; font-size: 42rpx; font-weight: 950; text-shadow: 4rpx 4rpx 0 rgba(0,0,0,.38); }
-.final-title { margin-top: 10rpx; color: #7CFF6B; font-size: 30rpx; font-weight: 950; }
-.final-desc { margin-top: 12rpx; color: rgba(255,255,255,.78); font-size: 25rpx; line-height: 1.6; }
-.persona-label { display: inline-flex; margin-top: 22rpx; padding: 6rpx 12rpx; border: 3rpx solid #FFD84D; border-radius: 6rpx; color: #071A0F; background: #FFD84D; font-size: 20rpx; font-weight: 950; }
-.persona-name { margin-top: 12rpx; color: #ffffff; font-size: 34rpx; font-weight: 950; }
-.persona-slogan { margin-top: 10rpx; color: rgba(255,255,255,.76); font-size: 24rpx; line-height: 1.55; }
-
-.stat-grid { margin-top: 26rpx; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14rpx; }
-.stat-card { padding: 18rpx 8rpx; text-align: center; }
-.stat-num { color: #FFD84D; font-size: 30rpx; font-weight: 950; }
-.stat-label { margin-top: 6rpx; color: rgba(255,255,255,.70); font-size: 20rpx; font-weight: 900; }
-.canvas-wrap { margin-top: 30rpx; padding: 18rpx; }
-.certificate-canvas { width: 654rpx; height: 960rpx; border-radius: 8rpx; overflow: hidden; }
-.button-group { margin-top: 34rpx; display: flex; flex-direction: column; gap: 20rpx; }
+.card-page { padding-bottom: 48rpx; }
+.hero { padding: 32rpx; }
+.eyebrow { color: #08d9d6; font-size: 22rpx; letter-spacing: 4rpx; font-weight: 800; }
+.page-title { margin-top: 10rpx; color: #fff; font-size: 52rpx; font-weight: 950; }
+.page-subtitle { margin-top: 10rpx; color: rgba(255,255,255,.7); font-size: 24rpx; line-height: 1.5; }
+.profile-card, .form-card, .canvas-wrap, .share-copy { margin-top: 22rpx; }
+.compact { margin: 0 0 12rpx; font-size: 28rpx; }
+.persona-name { color: #f6c453; font-size: 42rpx; font-weight: 950; }
+.persona-slogan { margin-top: 10rpx; color: rgba(255,255,255,.74); font-size: 24rpx; line-height: 1.55; }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14rpx; margin-top: 22rpx; }
+.stats-row view { padding: 16rpx 8rpx; border-radius: 16rpx; background: rgba(255,255,255,.08); text-align: center; }
+.stats-row text:first-child { display: block; color: #08d9d6; font-size: 34rpx; font-weight: 950; }
+.stats-row text:last-child { display: block; margin-top: 4rpx; color: rgba(255,255,255,.64); font-size: 21rpx; }
+.form-card { padding: 26rpx; }
+.nickname-input { height: 82rpx; padding: 0 20rpx; border-radius: 18rpx; color: #fff; background: rgba(255,255,255,.08); border: 1rpx solid rgba(255,255,255,.14); font-size: 28rpx; }
+.field-title { margin: 24rpx 0 12rpx; color: #fff; font-size: 26rpx; font-weight: 900; }
+.chips { white-space: nowrap; margin-bottom: 12rpx; }
+.chip { display: inline-flex; align-items: center; justify-content: center; min-width: 138rpx; height: 70rpx; padding: 0 18rpx; margin-right: 12rpx; border-radius: 16rpx; background: rgba(255,255,255,.08); border: 1rpx solid rgba(255,255,255,.14); color: rgba(255,255,255,.78); font-size: 24rpx; font-weight: 800; }
+.chip.selected { color: #07142f; background: #08d9d6; border-color: #08d9d6; }
+.chip.gold.selected { background: #f6c453; border-color: #f6c453; }
+.chip.cyan.selected { background: #08d9d6; border-color: #08d9d6; }
+.canvas-wrap { padding: 22rpx; overflow: hidden; }
+.identity-canvas { width: 640rpx; height: 900rpx; transform-origin: top left; border-radius: 18rpx; background: #07142f; }
+.save-btn { margin-top: 18rpx; }
+.copy-line { padding: 14rpx 0; border-top: 1rpx solid rgba(255,255,255,.1); color: rgba(255,255,255,.76); font-size: 24rpx; line-height: 1.5; }
+.bottom-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 16rpx; margin-top: 22rpx; }
+.notice-card { margin-top: 24rpx; padding: 22rpx; border-radius: 18rpx; background: rgba(255,107,107,.1); border: 1rpx solid rgba(255,107,107,.28); color: rgba(255,255,255,.72); font-size: 22rpx; line-height: 1.55; }

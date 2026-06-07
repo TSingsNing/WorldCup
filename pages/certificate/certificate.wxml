@@ -1,31 +1,57 @@
-<view class="container cert-page pixel-field">
-  <view class="cert-hero pixel-panel">
-    <view class="eyebrow">SHAREABLE PIXEL CERTIFICATE</view>
-    <view class="title">你的 WCTI 人格出炉</view>
-    <view class="grade-chip" style="border-color: {{accent}}; color: {{accent}};">{{grade}} · {{seal}}</view>
-    <view class="subtitle">{{gradeSlogan}}</view>
+<view class="container card-page">
+  <view class="hero glass-card">
+    <view class="eyebrow">FAN IDENTITY CARD</view>
+    <view class="page-title">世界杯身份卡</view>
+    <view class="page-subtitle">把预测积分、支持球队和社交标签生成一张朋友圈海报。</view>
   </view>
 
-  <view class="final-card glass-card">
-    <view class="final-score">{{finalScoreText}}</view>
-    <view class="final-title">{{matchResultTitle}}</view>
-    <view class="final-desc">{{matchResultDesc}}</view>
-    <view class="persona-label">隐藏称号</view>
-    <view class="persona-name">{{hiddenPersona}}</view>
-    <view class="persona-slogan">{{hiddenPersonaSlogan}}</view>
+  <view class="profile-card pixel-panel">
+    <view class="section-title compact">当前画像</view>
+    <view class="persona-name">{{profile.name}}</view>
+    <view class="persona-slogan">{{profile.slogan}}</view>
+    <view class="stats-row">
+      <view><text>{{profile.totalPoints}}</text><text>热力积分</text></view>
+      <view><text>{{profile.accuracy}}%</text><text>预言指数</text></view>
+      <view><text>{{profile.count}}</text><text>预测场次</text></view>
+    </view>
   </view>
 
-  <view class="stat-grid">
-    <view class="stat-card glass-card"><view class="stat-num">{{correct}}/{{total}}</view><view class="stat-label">命中</view></view>
-    <view class="stat-card glass-card"><view class="stat-num">{{accuracy}}%</view><view class="stat-label">正确率</view></view>
-    <view class="stat-card glass-card"><view class="stat-num">{{score}}</view><view class="stat-label">积分</view></view>
+  <view class="form-card glass-card">
+    <view class="section-title compact">身份信息</view>
+    <input class="nickname-input" value="{{form.nickname}}" maxlength="12" bindinput="onNicknameInput" placeholder="输入昵称" />
+
+    <view class="field-title">支持球队</view>
+    <scroll-view class="chips" scroll-x="true" enable-flex="true">
+      <view class="chip {{form.team === item ? 'selected' : ''}}" wx:for="{{teams}}" wx:key="*this" data-value="{{item}}" bindtap="chooseTeam">{{item}}</view>
+    </scroll-view>
+
+    <view class="field-title">冠军预测</view>
+    <scroll-view class="chips" scroll-x="true" enable-flex="true">
+      <view class="chip gold {{form.champion === item ? 'selected' : ''}}" wx:for="{{teams}}" wx:key="*this" data-value="{{item}}" bindtap="chooseChampion">{{item}}</view>
+    </scroll-view>
+
+    <view class="field-title">金靴预测</view>
+    <scroll-view class="chips" scroll-x="true" enable-flex="true">
+      <view class="chip cyan {{form.goldenBoot === item ? 'selected' : ''}}" wx:for="{{players}}" wx:key="*this" data-value="{{item}}" bindtap="chooseGoldenBoot">{{item}}</view>
+    </scroll-view>
+
+    <button class="primary-button" bindtap="generateCard">刷新身份卡</button>
   </view>
+
   <view class="canvas-wrap glass-card">
-    <canvas type="2d" class="certificate-canvas" id="certificateCanvas"></canvas>
+    <canvas canvas-id="identityCanvas" class="identity-canvas" style="width: 640rpx; height: 900rpx;"></canvas>
+    <button class="primary-button save-btn" bindtap="saveCertificate">保存海报到相册</button>
   </view>
-  <view class="button-group">
-    <view class="primary-button" bindtap="saveCertificate">保存证书</view>
-    <view class="ghost-button" bindtap="goLeaderboard">查看好友段位榜</view>
-    <view class="ghost-button" bindtap="backHome">再开一局</view>
+
+  <view class="share-copy pixel-card">
+    <view class="section-title compact">朋友圈文案</view>
+    <view class="copy-line" wx:for="{{shareLines}}" wx:key="*this">{{item}}</view>
   </view>
+
+  <view class="bottom-actions">
+    <button class="ghost-button" bindtap="goPredict">继续预测</button>
+    <button class="ghost-button" bindtap="goLeaderboard">好友榜</button>
+  </view>
+
+  <view class="notice-card">{{notice}}</view>
 </view>

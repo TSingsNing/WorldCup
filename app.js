@@ -1,10 +1,10 @@
 App({
   globalData: {
-    appName: 'WCTI世界杯人格测试',
+    appName: '世界杯预言家',
     theme: {
-      primary: '#7CFF6B',
-      gold: '#FFD84D',
-      deep: '#0B2B18'
+      primary: '#08d9d6',
+      gold: '#f6c453',
+      deep: '#07142f'
     },
     bgmAudio: null,
     bgmPlaying: false,

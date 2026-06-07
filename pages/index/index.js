@@ -1,56 +1,98 @@
-const { getDifficultyList } = require('../../utils/questions.js')
 const app = getApp()
+const {
+  complianceNotice,
+  getMatchList,
+  getPredictionList,
+  getStats,
+  getProfile,
+  getRoom,
+  saveRoom
+} = require('../../utils/worldcup.js')
 
 Page({
   data: {
-    difficulties: [],
-    // 默认显示为"已开"，与 app.onLaunch 自动播放保持一致；若 iOS 实际未播放，
-    // 用户首个点击会通过 onPageTouch 兜底再次尝试播放
-    musicOn: true
+    musicOn: true,
+    notice: complianceNotice,
+    matches: [],
+    recentPredictions: [],
+    stats: {},
+    profile: {},
+    room: {},
+    featureCards: [
+      { title: '每日预测', desc: '胜平负、比分、进球区间与首球时间', value: '免费参与' },
+      { title: '好友天台杯', desc: '微信群内比命中率、连红与荣誉称号', value: '荣誉PK' },
+      { title: '身份卡传播', desc: '生成黄金预言家、反向明灯等球迷标签', value: '可分享' },
+      { title: 'AI赛前分析', desc: '提供状态、看点、爆冷概率的娱乐解读', value: '无投注建议' }
+    ]
   },
+
   onLoad() {
-    // 进入首页再尝试播一次，覆盖 onLaunch 时音频上下文还没就绪的情况
     app.playBgm('default')
-    this.setData({ difficulties: getDifficultyList(), musicOn: app.isBgmPlaying() || true })
+    this.refreshPage()
   },
+
   onShow() {
-    // 从人格测试、证书或排行榜返回首页时，把 BGM 切回大厅默认曲（用户主动暂停过则保持暂停）
     if (app.globalData.currentBgmKey !== 'default' && !app.globalData.userPaused) {
       app.playBgm('default')
     }
-    this.setData({ musicOn: app.isBgmPlaying() })
+    this.refreshPage()
   },
-  // 兜底：iOS 偶尔会拒绝 onLaunch 自动播放，首页任意点击触发一次播放尝试
+
+  refreshPage() {
+    this.setData({
+      musicOn: app.isBgmPlaying(),
+      matches: getMatchList().slice(0, 3),
+      recentPredictions: getPredictionList().slice(0, 2),
+      stats: getStats(),
+      profile: getProfile(),
+      room: getRoom()
+    })
+  },
+
   onPageTouch() {
     if (!app.isBgmPlaying() && !app.globalData.userPaused) {
       app.playBgm('default')
       this.setData({ musicOn: app.isBgmPlaying() })
     }
   },
+
   toggleMusic() {
     const musicOn = app.toggleBgm('default')
     this.setData({ musicOn })
   },
-  startQuiz(event) {
-    const difficulty = event.currentTarget.dataset.key
-    app.playBgm(difficulty)
-    this.setData({ musicOn: true })
-    wx.navigateTo({ url: `/pages/quiz/quiz?difficulty=${difficulty}` })
+
+  goPredict(event) {
+    const matchId = event.currentTarget.dataset.id || ''
+    wx.navigateTo({ url: `/pages/quiz/quiz${matchId ? '?matchId=' + matchId : ''}` })
   },
+
+  goCard() {
+    wx.navigateTo({ url: '/pages/certificate/certificate' })
+  },
+
   goLeaderboard() {
     wx.navigateTo({ url: '/pages/leaderboard/leaderboard' })
   },
 
+  createRoom() {
+    const next = saveRoom({
+      name: this.data.room.name === '天台杯' ? '熬夜看球群' : '天台杯',
+      members: this.data.room.name === '天台杯' ? 26 : 18
+    })
+    this.setData({ room: next })
+    wx.showToast({ title: '已切换好友房间', icon: 'none' })
+  },
+
   onShareAppMessage() {
     return {
-      title: 'WCTI · 测测你的世界杯人格',
+      title: '世界杯预言家：只比眼光，不碰投注',
       path: '/pages/index/index'
     }
   },
 
   onShareTimeline() {
     return {
-      title: 'WCTI · 测测你的世界杯人格',
+      title: '我的世界杯预言家身份卡已生成',
       query: ''
     }
   }

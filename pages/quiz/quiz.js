@@ -1,254 +1,91 @@
-const { getQuizSession, getArchetype } = require('../../utils/questions.js')
-const {
-  calcScore,
-  getLevel,
-  getCertificateGrade,
-  getMatchBroadcast,
-  getFinalScoreReport,
-  getHiddenPersona,
-  saveRecord
-} = require('../../utils/rank.js')
 const app = getApp()
+const {
+  complianceNotice,
+  getMatchList,
+  getMatchById,
+  savePrediction,
+  championTeams,
+  goldenBootPlayers
+} = require('../../utils/worldcup.js')
 
 Page({
   data: {
-    difficulty: 'easy',
-    quiz: {},
-    currentIndex: 0,
-    currentQuestion: {},
-    total: 0,
-    progress: 0,
-    score: 0,
-    wrongCount: 0,
-    correctStreak: 0,
-    wrongStreak: 0,
-    maxCorrectStreak: 0,
-    maxWrongStreak: 0,
-    lastCorrect: false,
-    selectedIndex: -1,
-    showAnswer: false,
-    isCorrect: false,
-    isLast: false,
-    selectedLetter: '',
-    correctLetter: '',
-    selectedAnswerText: '',
-    correctAnswerText: '',
-    startTime: 0,
-    roast: '别慌，先把球停住。',
-    broadcastTitle: '赛前热身',
-    broadcastLine: '主裁哨响前，先看看今天脚感如何。',
-    letters: ['A', 'B', 'C', 'D']
+    notice: complianceNotice,
+    matches: [],
+    current: {},
+    selectedMatchId: '',
+    resultOptions: ['主胜', '平局', '客胜', '爆冷'],
+    scoreOptions: ['1:0', '1:1', '2:1', '0:0', '2:2', '3:1'],
+    goalOptions: ['0-1球', '2-3球', '4球以上'],
+    firstGoalOptions: ['上半场前30分钟', '上半场后15分钟', '下半场', '无人进球'],
+    championTeams,
+    goldenBootPlayers,
+    form: {
+      result: '',
+      score: '',
+      goals: '',
+      firstGoal: '',
+      champion: '法国',
+      goldenBoot: '姆巴佩',
+      reason: '看好中场控制和边路速度。'
+    },
+    saved: null,
+    musicOn: true
   },
 
   onLoad(options) {
-    const difficulty = options.difficulty || 'easy'
-    app.playBgm(difficulty)
-    this.initQuiz(difficulty)
+    app.playBgm('medium')
+    const matches = getMatchList()
+    const selectedMatchId = options && options.matchId ? options.matchId : matches[0].id
+    this.setData({ matches, selectedMatchId, current: getMatchById(selectedMatchId), musicOn: app.isBgmPlaying() })
   },
 
-  initQuiz(difficulty) {
-    const quiz = getQuizSession(difficulty)
-    const total = quiz.questions.length
-    this.setData({
-      difficulty,
-      quiz,
-      currentIndex: 0,
-      currentQuestion: quiz.questions[0],
-      total,
-      progress: Math.round((1 / total) * 100),
-      score: 0,
-      wrongCount: 0,
-      correctStreak: 0,
-      wrongStreak: 0,
-      maxCorrectStreak: 0,
-      maxWrongStreak: 0,
-      lastCorrect: false,
-      selectedIndex: -1,
-      showAnswer: false,
-      isCorrect: false,
-      isLast: total === 1,
-      selectedLetter: '',
-      correctLetter: quiz.questions[0] ? this.data.letters[quiz.questions[0].answer] : '',
-      selectedAnswerText: '',
-      correctAnswerText: quiz.questions[0] ? quiz.questions[0].options[quiz.questions[0].answer] : '',
-      startTime: Date.now(),
-      roast: quiz.vibe,
-      broadcastTitle: '赛前热身',
-      broadcastLine: '主裁哨响前，先看看今天脚感如何。'
-    })
+  selectMatch(event) {
+    const selectedMatchId = event.currentTarget.dataset.id
+    this.setData({ selectedMatchId, current: getMatchById(selectedMatchId), saved: null })
   },
 
-  chooseOption(event) {
-    if (this.data.showAnswer) return
-    const selectedIndex = Number(event.currentTarget.dataset.index)
-    const isCorrect = selectedIndex === this.data.currentQuestion.answer
-    const nextScore = isCorrect ? this.data.score + 1 : this.data.score
-    const nextWrongCount = isCorrect ? this.data.wrongCount : this.data.wrongCount + 1
-    const nextCorrectStreak = isCorrect ? this.data.correctStreak + 1 : 0
-    const nextWrongStreak = isCorrect ? 0 : this.data.wrongStreak + 1
-    const maxCorrectStreak = Math.max(this.data.maxCorrectStreak, nextCorrectStreak)
-    const maxWrongStreak = Math.max(this.data.maxWrongStreak, nextWrongStreak)
-    const broadcast = getMatchBroadcast({
-      isCorrect,
-      currentIndex: this.data.currentIndex,
-      total: this.data.total,
-      score: this.data.score,
-      wrongCount: this.data.wrongCount,
-      correctStreak: nextCorrectStreak,
-      wrongStreak: nextWrongStreak,
-      isLast: this.data.isLast
-    })
+  chooseResult(event) { this.updateForm('result', event.currentTarget.dataset.value) },
+  chooseScore(event) { this.updateForm('score', event.currentTarget.dataset.value) },
+  chooseGoals(event) { this.updateForm('goals', event.currentTarget.dataset.value) },
+  chooseFirstGoal(event) { this.updateForm('firstGoal', event.currentTarget.dataset.value) },
+  chooseChampion(event) { this.updateForm('champion', event.currentTarget.dataset.value) },
+  chooseGoldenBoot(event) { this.updateForm('goldenBoot', event.currentTarget.dataset.value) },
 
-    this.setData({
-      selectedIndex,
-      selectedLetter: this.data.letters[selectedIndex],
-      correctLetter: this.data.letters[this.data.currentQuestion.answer],
-      selectedAnswerText: this.data.currentQuestion.options[selectedIndex],
-      correctAnswerText: this.data.currentQuestion.options[this.data.currentQuestion.answer],
-      showAnswer: true,
-      isCorrect,
-      score: nextScore,
-      wrongCount: nextWrongCount,
-      correctStreak: nextCorrectStreak,
-      wrongStreak: nextWrongStreak,
-      maxCorrectStreak,
-      maxWrongStreak,
-      lastCorrect: isCorrect,
-      roast: broadcast.line,
-      broadcastTitle: broadcast.title,
-      broadcastLine: broadcast.line
-    })
-    wx.vibrateShort({ type: isCorrect ? 'light' : 'medium' })
+  onReasonInput(event) {
+    this.updateForm('reason', event.detail.value)
+  },
 
-    // 答对：短暂展示赛况播报后自动推进，不打扰节奏。
-    // 答错：保留在原页面展示解释和“下一脚”按钮，让用户阅读。
-    if (isCorrect) {
-      const isLast = this.data.isLast
-      setTimeout(() => {
-        if (isLast) {
-          this.goCertificate()
-        } else {
-          this.nextQuestion()
-        }
-      }, 900)
+  updateForm(key, value) {
+    const form = Object.assign({}, this.data.form)
+    form[key] = value
+    this.setData({ form })
+  },
+
+  submitPrediction() {
+    const form = this.data.form
+    if (!form.result || !form.score || !form.goals) {
+      wx.showToast({ title: '请至少完成赛果、比分和进球区间', icon: 'none' })
+      return
     }
+    const saved = savePrediction(Object.assign({}, form, { matchId: this.data.selectedMatchId }))
+    this.setData({ saved })
+    wx.showToast({ title: '娱乐预测已保存', icon: 'success' })
   },
 
-  nextQuestion() {
-    const nextIndex = this.data.currentIndex + 1
-    const currentQuestion = this.data.quiz.questions[nextIndex]
-    this.setData({
-      currentIndex: nextIndex,
-      currentQuestion,
-      progress: Math.round(((nextIndex + 1) / this.data.total) * 100),
-      selectedIndex: -1,
-      showAnswer: false,
-      isCorrect: false,
-      isLast: nextIndex === this.data.total - 1,
-      selectedLetter: '',
-      correctLetter: currentQuestion ? this.data.letters[currentQuestion.answer] : '',
-      selectedAnswerText: '',
-      correctAnswerText: currentQuestion ? currentQuestion.options[currentQuestion.answer] : '',
-      roast: '哨声没响，继续冲刺。',
-      broadcastTitle: `${Math.min(90, Math.round(((nextIndex + 1) / this.data.total) * 90))}' 继续测球格`,
-      broadcastLine: '镜头回到中圈，下一题已经摆好。'
-    })
-  },
+  goCard() { wx.navigateTo({ url: '/pages/certificate/certificate' }) },
+  goLeaderboard() { wx.navigateTo({ url: '/pages/leaderboard/leaderboard' }) },
+  backHome() { wx.navigateBack({ delta: 1 }) },
 
-  restart() {
-    app.playBgm(this.data.difficulty)
-    this.initQuiz(this.data.difficulty)
-  },
-
-  goCertificate() {
-    const {
-      difficulty,
-      quiz,
-      total,
-      startTime,
-      score,
-      lastCorrect,
-      maxCorrectStreak,
-      maxWrongStreak
-    } = this.data
-    const duration = Math.max(1, Math.round((Date.now() - startTime) / 1000))
-    const finalScore = calcScore(difficulty, total, duration, score)
-    const archetype = getArchetype(finalScore + duration + score)
-    const level = getLevel(difficulty)
-    const grade = getCertificateGrade(score, total)
-    const accuracy = Math.round((score / Math.max(1, total)) * 100)
-    const matchReport = getFinalScoreReport({
-      correctCount: score,
-      total,
-      duration,
-      difficulty,
-      lastCorrect,
-      maxCorrectStreak,
-      maxWrongStreak
-    })
-    const hiddenPersona = getHiddenPersona({
-      difficulty,
-      correctCount: score,
-      total,
-      duration,
-      lastCorrect,
-      maxCorrectStreak,
-      maxWrongStreak
-    })
-    const record = {
-      nickname: '我',
-      difficulty,
-      level,
-      score: finalScore,
-      accuracy,
-      duration,
-      title: quiz.badge,
-      archetype: archetype.name,
-      hiddenPersona: hiddenPersona.name,
-      finalScoreText: matchReport.finalScoreText,
-      certificateGrade: grade.name
-    }
-    saveRecord(record)
-    // 把证书所需字段写入本地缓存，避免拼超长 URL；证书页 onLoad 直接读取。
-    const payload = {
-      difficulty,
-      difficultyName: quiz.name,
-      badge: quiz.badge,
-      total,
-      correct: score,
-      accuracy,
-      duration,
-      score: finalScore,
-      level,
-      type: archetype.name,
-      slogan: archetype.slogan,
-      hiddenPersona: hiddenPersona.name,
-      hiddenPersonaSlogan: hiddenPersona.slogan,
-      finalScoreText: matchReport.finalScoreText,
-      matchResultTitle: matchReport.matchResultTitle,
-      matchResultDesc: matchReport.matchResultDesc,
-      grade: grade.name,
-      gradeKey: grade.key,
-      gradeSlogan: grade.slogan,
-      seal: grade.seal,
-      accent: grade.accent
-    }
-    wx.setStorageSync('cert_payload', payload)
-    // 用 redirectTo 替代 navigateTo，避免返回栈一直累积。
-    wx.redirectTo({ url: '/pages/certificate/certificate' })
+  toggleMusic() {
+    const musicOn = app.toggleBgm('medium')
+    this.setData({ musicOn })
   },
 
   onShareAppMessage() {
     return {
-      title: `我测出了【${this.data.quiz.name || 'WCTI世界杯人格'}】人格，敢来比比球格吗？`,
-      path: '/pages/index/index'
-    }
-  },
-
-  onShareTimeline() {
-    return {
-      title: 'WCTI · 测测你的世界杯人格',
-      query: ''
+      title: '我锁定了一场世界杯娱乐预测，来和我反着站队',
+      path: '/pages/quiz/quiz?matchId=' + this.data.selectedMatchId
     }
   }
 })

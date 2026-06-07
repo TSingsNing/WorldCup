@@ -1,42 +1,69 @@
-<view class="container home-page pixel-home" bindtouchstart="onPageTouch">
+<view class="container prophet-home" bindtouchstart="onPageTouch">
   <view class="top-actions">
     <view class="pill-button" bindtap="toggleMusic">{{musicOn ? 'BGM 开' : '开 BGM'}}</view>
     <view class="pill-button outline" bindtap="goLeaderboard">好友榜</view>
   </view>
 
-  <view class="hero pixel-hero">
-    <view class="hero-copy">
-      <view class="eyebrow">WORLD CUP TYPE INDICATOR</view>
-      <view class="title">WCTI世界杯人格测试</view>
-      <view class="subtitle">测球格，开球。终场发证。</view>
+  <view class="hero-card glass-card">
+    <view class="eyebrow">WORLD CUP PROPHET</view>
+    <view class="title">世界杯预言家</view>
+    <view class="subtitle">娱乐预测、好友PK、身份卡传播；只比眼光，不碰投注。</view>
+    <view class="hero-stats">
+      <view class="stat-box"><text class="stat-num">{{stats.count}}</text><text>已预测</text></view>
+      <view class="stat-box"><text class="stat-num">{{stats.totalPoints}}</text><text>热力积分</text></view>
+      <view class="stat-box"><text class="stat-num">{{stats.accuracy}}%</text><text>预言指数</text></view>
     </view>
-    <view class="hero-pitch" aria-hidden="true">
-      <view class="stand-row"><text></text><text></text><text></text><text></text></view>
-      <view class="pixel-cup"><view class="cup-head"></view><view class="cup-body"></view><view class="cup-base"></view></view>
-      <view class="pixel-ball"></view>
+    <view class="hero-actions">
+      <button class="primary-button" bindtap="goPredict">开始今日预测</button>
+      <button class="ghost-button" bindtap="goCard">生成身份卡</button>
     </view>
   </view>
 
-  <view class="match-kit">
-    <view class="kit-card"><view class="kit-icon">90'</view><view class="kit-text">开球</view></view>
-    <view class="kit-card hot"><view class="kit-icon">TOP</view><view class="kit-text">冲榜</view></view>
-    <view class="kit-card"><view class="kit-icon">CUP</view><view class="kit-text">发证</view></view>
+  <view class="persona-strip pixel-panel">
+    <view>
+      <view class="section-title compact">当前身份</view>
+      <view class="persona-name">{{profile.name}}</view>
+      <view class="persona-slogan">{{profile.slogan}}</view>
+    </view>
+    <view class="mini-cup">CUP</view>
   </view>
 
-  <view class="section-title">选择难度</view>
-  <view class="difficulty-list">
-    <view class="difficulty-card glass-card" wx:for="{{difficulties}}" wx:key="key" bindtap="startQuiz" data-key="{{item.key}}">
-      <view class="difficulty-top">
-        <view class="difficulty-main">
-          <view class="difficulty-name">{{item.name}}</view>
-          <view class="difficulty-vibe">{{item.vibe}}</view>
-        </view>
-        <view class="question-count">{{item.count}} 题</view>
-      </view>
-      <view class="difficulty-bottom">
-        <view class="badge">{{item.badge}}</view>
-        <view class="arrow">开球 →</view>
-      </view>
+  <view class="feature-grid">
+    <view class="feature-card" wx:for="{{featureCards}}" wx:key="title">
+      <view class="feature-value">{{item.value}}</view>
+      <view class="feature-title">{{item.title}}</view>
+      <view class="feature-desc">{{item.desc}}</view>
     </view>
   </view>
+
+  <view class="section-head">
+    <view class="section-title">热度赛程</view>
+    <view class="section-more" bindtap="goPredict">全部预测 →</view>
+  </view>
+  <view class="match-list">
+    <view class="match-card glass-card" wx:for="{{matches}}" wx:key="id" bindtap="goPredict" data-id="{{item.id}}">
+      <view class="match-top"><text>{{item.stage}} · {{item.group}}</text><text class="hot">热度 {{item.heat}}</text></view>
+      <view class="teams"><text>{{item.home}}</text><text class="vs">VS</text><text>{{item.away}}</text></view>
+      <view class="match-meta">{{item.date}} {{item.time}} · {{item.venue}} · {{item.tag}}</view>
+    </view>
+  </view>
+
+  <view class="room-card pixel-card">
+    <view>
+      <view class="section-title compact">好友房间：{{room.name}}</view>
+      <view class="room-copy">{{room.slogan}}</view>
+      <view class="room-copy">当前模拟成员 {{room.members}} 人，可用于微信群荣誉榜原型。</view>
+    </view>
+    <button class="small-button" bindtap="createRoom">切换房间</button>
+  </view>
+
+  <view class="recent-card glass-card" wx:if="{{recentPredictions.length}}">
+    <view class="section-title compact">最近预测</view>
+    <view class="recent-item" wx:for="{{recentPredictions}}" wx:key="matchId">
+      <text>{{item.match.home}} vs {{item.match.away}}</text>
+      <text>{{item.result}} · +{{item.points}}</text>
+    </view>
+  </view>
+
+  <view class="notice-card">{{notice}}</view>
 </view>
