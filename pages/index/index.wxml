@@ -1,36 +1,27 @@
 <view class="container home-page pixel-home" bindtouchstart="onPageTouch">
   <view class="top-actions">
-    <view class="pill-button" bindtap="toggleMusic">{{musicOn ? 'BGM 已开 · 球场热身中' : '播放赛前 BGM'}}</view>
-    <view class="pill-button outline" bindtap="goLeaderboard">好友段位榜</view>
+    <view class="pill-button" bindtap="toggleMusic">{{musicOn ? 'BGM 开' : '开 BGM'}}</view>
+    <view class="pill-button outline" bindtap="goLeaderboard">好友榜</view>
   </view>
 
   <view class="hero pixel-hero">
     <view class="eyebrow">PIXEL WORLD CUP QUIZ</view>
     <view class="title">世界杯像素答题杯</view>
-    <view class="subtitle">从入门球迷到球史怪物，选一档开球。答错不会重来，系统会按正确率发放不同版本的分享证书。</view>
+    <view class="subtitle">选难度，开球。答错继续，终场发证。</view>
   </view>
 
-  <view class="stadium-card glass-card">
-    <view class="field-mark"></view>
-    <view class="ticker">今日看台：懂球不靠嗓门，靠进球数和正确率。</view>
-    <view class="pixel-ball">●</view>
-    <view class="stadium-title">四档难度 · 四套赛场 BGM</view>
-    <view class="stadium-desc">题库会随机抽题并打乱选项。球史怪物局会把世界杯冷门、远古名场面和冠军细节一起压上来。</view>
-  </view>
-
-  <view class="section-title">选择你的开球难度</view>
+  <view class="section-title">选择难度</view>
   <view class="difficulty-list">
     <view class="difficulty-card glass-card" wx:for="{{difficulties}}" wx:key="key" bindtap="startQuiz" data-key="{{item.key}}">
       <view class="difficulty-top">
-        <view>
+        <view class="difficulty-main">
           <view class="difficulty-name">{{item.name}}</view>
           <view class="difficulty-vibe">{{item.vibe}}</view>
         </view>
-        <view class="question-count">抽 {{item.count}} / {{item.poolCount}}</view>
+        <view class="question-count">{{item.count}} 题</view>
       </view>
-      <view class="difficulty-desc">{{item.description}}</view>
       <view class="difficulty-bottom">
-        <view class="badge">通关称号：{{item.badge}}</view>
+        <view class="badge">{{item.badge}}</view>
         <view class="arrow">开球 →</view>
       </view>
     </view>

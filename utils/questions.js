@@ -3,8 +3,8 @@
 const questionBank = {
   easy: {
     name: '球迷入门局',
-    vibe: '能分清世界杯和世界波，就已经领先很多人。',
-    description: '基础常识局，适合热身和拉朋友入坑。',
+    vibe: '热身开踢，先找脚感。',
+    description: '基础常识局。',
     badge: '气氛组队长',
     accent: '#08d9d6',
     challengeCount: 5,
@@ -21,8 +21,8 @@ const questionBank = {
   },
   medium: {
     name: '战术观察局',
-    vibe: '懂一点阵型，也懂一点熬夜后遗症。',
-    description: '经典决赛、金靴和主办地，适合真球迷互相试探。',
+    vibe: '经典名场面，开始上强度。',
+    description: '经典决赛与金靴。',
     badge: '战术板涂鸦师',
     accent: '#f6c453',
     challengeCount: 6,
@@ -40,8 +40,8 @@ const questionBank = {
   },
   hard: {
     name: '传奇考古局',
-    vibe: '一般朋友答题，你在翻世界杯族谱。',
-    description: '纪录、冷门赛制和早期历史，答对就有点东西。',
+    vibe: '纪录冷门，考古开挖。',
+    description: '纪录、赛制和早期历史。',
     badge: 'VAR 预言家',
     accent: '#ff6b6b',
     challengeCount: 7,
@@ -59,8 +59,8 @@ const questionBank = {
   },
   nightmare: {
     name: '球史怪物局',
-    vibe: '警告：这不是答题，这是世界杯冷知识体检。',
-    description: '超级难，给资深球迷和冷门考古人准备，答对可直接上桌吹牛。',
+    vibe: '冷知识压迫感拉满。',
+    description: '资深球迷挑战。',
     badge: '冷门百科人柱力',
     accent: '#b06cff',
     challengeCount: 8,
