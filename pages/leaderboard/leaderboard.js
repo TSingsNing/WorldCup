@@ -10,13 +10,13 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '看看我在世界杯像素答题杯的段位榜排名',
+      title: '看看我的 WCTI 世界杯人格段位',
       path: '/pages/index/index'
     }
   },
   onShareTimeline() {
     return {
-      title: '世界杯像素答题杯 · 好友段位榜',
+      title: 'WCTI · 好友人格榜',
       query: ''
     }
   }

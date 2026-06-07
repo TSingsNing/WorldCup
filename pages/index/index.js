@@ -14,7 +14,7 @@ Page({
     this.setData({ difficulties: getDifficultyList(), musicOn: app.isBgmPlaying() || true })
   },
   onShow() {
-    // 从答题/证书/排行榜返回首页时，把 BGM 切回大厅默认曲（用户主动暂停过则保持暂停）
+    // 从人格测试、证书或排行榜返回首页时，把 BGM 切回大厅默认曲（用户主动暂停过则保持暂停）
     if (app.globalData.currentBgmKey !== 'default' && !app.globalData.userPaused) {
       app.playBgm('default')
     }
@@ -43,14 +43,14 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '世界杯像素答题杯 · 来一局看看你的球格人格',
+      title: 'WCTI · 测测你的世界杯人格',
       path: '/pages/index/index'
     }
   },
 
   onShareTimeline() {
     return {
-      title: '世界杯像素答题杯 · 来一局看看你的球格人格',
+      title: 'WCTI · 测测你的世界杯人格',
       query: ''
     }
   }

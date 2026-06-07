@@ -1,9 +1,9 @@
 <view class="container quiz-page pixel-field">
   <view class="scoreboard pixel-panel">
-    <view>
+    <view class="score-main">
       <view class="eyebrow">{{quiz.name}}</view>
       <view class="title">第 {{currentIndex + 1}} / {{total}} 题</view>
-      <view class="roast">{{roast}}</view>
+      <view class="roast">{{broadcastTitle}} · {{broadcastLine}}</view>
     </view>
     <view class="score-box">
       <view class="score-num">{{score}}</view>
@@ -20,7 +20,6 @@
     <view class="field-lines">
       <view class="center-circle"></view>
     </view>
-    <view class="tiny-label">随机抽题 · 选项已洗牌 · 答错也继续</view>
     <view class="question-text">{{currentQuestion.question}}</view>
     <view class="option-list">
       <view wx:for="{{currentQuestion.options}}" wx:key="*this" data-index="{{index}}" bindtap="chooseOption" class="option-card {{selectedIndex === index ? (isCorrect ? 'option-correct' : 'option-wrong') : ''}} {{showAnswer && index === currentQuestion.answer ? 'option-correct' : ''}}">
@@ -28,15 +27,21 @@
         <view class="option-text">{{item}}</view>
       </view>
     </view>
-  </view>
 
-  <view wx:if="{{showAnswer && !isCorrect}}" class="feedback-card pixel-card fail">
-    <view class="feedback-title">球偏了，但比赛继续</view>
-    <view class="feedback-desc">{{currentQuestion.explanation}}</view>
-  </view>
-
-  <view class="action-area" wx:if="{{showAnswer && !isCorrect}}">
-    <view wx:if="{{!isLast}}" class="primary-button pixel-button" bindtap="nextQuestion">下一脚继续攻门</view>
-    <view wx:if="{{isLast}}" class="primary-button pixel-button" bindtap="goCertificate">生成我的球场证书</view>
+    <view class="result-card {{showAnswer ? (isCorrect ? 'success' : 'fail') : 'idle'}}">
+      <view class="result-head">
+        <view class="result-tag">{{showAnswer ? '回答结果' : '场边待命'}}</view>
+        <view class="result-status">{{showAnswer ? (isCorrect ? '射门得分' : '偏出球门') : '选择一个答案'}}</view>
+      </view>
+      <view wx:if="{{showAnswer}}" class="answer-row">
+        <view class="answer-pill mine">你选 {{selectedLetter}}</view>
+        <view class="answer-pill truth">正解 {{correctLetter}}</view>
+      </view>
+      <view class="result-desc">{{showAnswer ? (isCorrect ? broadcastLine : currentQuestion.explanation) : '结果、解析和下一题入口都会出现在这里。'}}</view>
+      <view wx:if="{{showAnswer && !isCorrect}}" class="feedback-action">
+        <view wx:if="{{!isLast}}" class="primary-button pixel-button compact-button" bindtap="nextQuestion">下一题</view>
+        <view wx:if="{{isLast}}" class="primary-button pixel-button compact-button" bindtap="goCertificate">生成证书</view>
+      </view>
+    </view>
   </view>
 </view>

@@ -18,7 +18,12 @@ Page({
     gradeKey: 'perfect',
     gradeSlogan: '全场零失误，今晚朋友圈可以站上领奖台。',
     seal: 'PERFECT',
-    accent: '#FFD84D'
+    accent: '#FFD84D',
+    hiddenPersona: '九十分钟零封指挥官',
+    hiddenPersonaSlogan: '不冒进、不脚软，从第一题到最后一题都很稳。',
+    finalScoreText: '终场 0:0',
+    matchResultTitle: '常规时间完赛',
+    matchResultDesc: '九十分钟踢满，比分牌已经给出本场判定。'
   },
 
   // Canvas 2D 节点引用（非响应式数据，挂在实例上）
@@ -46,7 +51,12 @@ Page({
         gradeKey: payload.gradeKey || this.data.gradeKey,
         gradeSlogan: payload.gradeSlogan || this.data.gradeSlogan,
         seal: payload.seal || this.data.seal,
-        accent: payload.accent || this.data.accent
+        accent: payload.accent || this.data.accent,
+        hiddenPersona: payload.hiddenPersona || this.data.hiddenPersona,
+        hiddenPersonaSlogan: payload.hiddenPersonaSlogan || this.data.hiddenPersonaSlogan,
+        finalScoreText: payload.finalScoreText || this.data.finalScoreText,
+        matchResultTitle: payload.matchResultTitle || this.data.matchResultTitle,
+        matchResultDesc: payload.matchResultDesc || this.data.matchResultDesc
       })
     }
   },
@@ -125,31 +135,31 @@ Page({
 
     ctx.fillStyle = accent
     ctx.font = `bold ${F(12)}px sans-serif`
-    ctx.fillText('PIXEL WORLD CUP QUIZ', X(DESIGN_W / 2), Y(74))
+    ctx.fillText('WORLD CUP TYPE INDICATOR', X(DESIGN_W / 2), Y(74))
 
     ctx.fillStyle = '#FFFFFF'
     ctx.font = `bold ${F(24)}px sans-serif`
-    ctx.fillText('球场人格证书', X(DESIGN_W / 2), Y(112))
+    ctx.fillText('WCTI 球场人格证书', X(DESIGN_W / 2), Y(112))
 
     ctx.font = `bold ${F(18)}px sans-serif`
     ctx.fillText(this.data.grade, X(DESIGN_W / 2), Y(148))
 
     ctx.fillStyle = accent
     ctx.font = `bold ${F(20)}px sans-serif`
-    ctx.fillText(this.data.type, X(DESIGN_W / 2), Y(180))
+    ctx.fillText(this.data.hiddenPersona, X(DESIGN_W / 2), Y(180))
 
     ctx.fillStyle = 'rgba(255,255,255,0.86)'
     ctx.font = `${F(12)}px sans-serif`
-    this.drawWrappedText(ctx, this.data.gradeSlogan, X(DESIGN_W / 2), Y(208), X(238), Y(18))
+    this.drawWrappedText(ctx, this.data.hiddenPersonaSlogan, X(DESIGN_W / 2), Y(208), X(238), Y(18))
 
     ctx.fillStyle = 'rgba(255,255,255,0.10)'
     ctx.fillRect(X(54), Y(258), X(219), Y(88))
 
     ctx.fillStyle = '#FFFFFF'
     ctx.font = `${F(13)}px sans-serif`
-    ctx.fillText(`段位：${this.data.level}`, X(DESIGN_W / 2), Y(283))
-    ctx.fillText(`副本：${this.data.difficultyName}`, X(DESIGN_W / 2), Y(307))
-    ctx.fillText(`战绩：${this.data.correct}/${this.data.total} · ${this.data.accuracy}% · ${this.data.duration}s`, X(DESIGN_W / 2), Y(331))
+    ctx.fillText(this.data.finalScoreText, X(DESIGN_W / 2), Y(278))
+    ctx.fillText(this.data.matchResultTitle, X(DESIGN_W / 2), Y(303))
+    ctx.fillText(`段位：${this.data.level} · ${this.data.accuracy}% · ${this.data.duration}s`, X(DESIGN_W / 2), Y(329))
 
     ctx.fillStyle = accent
     ctx.fillRect(X(103), Y(364), X(121), Y(42))
@@ -262,14 +272,14 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: `我在世界杯像素答题杯拿到「${this.data.grade}」，敢来比比吗？`,
+      title: `${this.data.finalScoreText}｜${this.data.hiddenPersona}，敢来比比吗？`,
       path: '/pages/index/index'
     }
   },
 
   onShareTimeline() {
     return {
-      title: `世界杯像素答题杯 · 我是${this.data.type}`,
+      title: `WCTI · ${this.data.hiddenPersona}`,
       query: ''
     }
   }

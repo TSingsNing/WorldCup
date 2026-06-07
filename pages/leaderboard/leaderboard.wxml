@@ -14,7 +14,7 @@
           <view wx:if="{{item.isMine}}" class="me-tag">我</view>
         </view>
         <view class="meta">{{item.level}} · {{item.title}}</view>
-        <view class="submeta">{{item.certificateGrade}} · 正确率 {{item.accuracy}}% · {{item.duration}}s</view>
+        <view class="submeta">{{item.finalScoreText || item.certificateGrade}} · {{item.hiddenPersona || item.certificateGrade}} · 正确率 {{item.accuracy}}%</view>
       </view>
       <view class="score">{{item.score}}</view>
     </view>
